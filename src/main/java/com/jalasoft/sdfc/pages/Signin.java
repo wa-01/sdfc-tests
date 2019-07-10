@@ -23,8 +23,6 @@ public class Signin extends AbstractPage {
         action.setValue(userNameTextField, userName);
         action.setValue(passwordTextField, password);
         action.click(loginButton);
-
-        wait.until( ExpectedConditions.titleIs("Verify Your Identity | Salesforce"));
         return new Header();
     }
 }
