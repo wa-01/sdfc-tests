@@ -13,19 +13,4 @@ public class Header extends AbstractPage {
     @FindBy(css = ".tc_projects_dropdown_link")
     private WebElement pivotalTrackerDropdown;
 
-    /*public ProfileDropdown clickProfileDropdown() {
-        driver.findElement(By.cssSelector("div[data-aid=\"ProfileDropdown\"] > button")).click();
-        return new ProfileDropdown(driver);
-    }
-
-    public Dashboard goToDashboard() {
-        action.click(dashboardIcon);
-        wait.until(ExpectedConditions.titleIs("Verify Your Identity | Salesforce"));
-        return new Dashboard();
-    }
-
-    public MenuPopover clickPivotalTrackerDropDown() {
-        action.click(pivotalTrackerDropdown);
-        return new MenuPopover();
-    }*/
 }
