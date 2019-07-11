@@ -1,7 +1,7 @@
 Feature: Projects
 
   Scenario: Create Basic Account
-    Given I sign in as "edgariverq@personal.com" user and "EEE199909049qqq" as password
+    Given I sign in as "account" user and "Password" as password
     And I click on the App Launcher button and select item "Opportunities"
 #    When I click on New button
 #    And I set the account form
