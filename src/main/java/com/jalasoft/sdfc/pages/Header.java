@@ -6,13 +6,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Header extends AbstractPage {
-
     // it should allows to find almost all the tab items and they arrows in the header
     private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[@title='%s']";
     private final static String TAB_NAME_ARROW = "%s/following::a/descendant::span[starts-with(text(),'%s')]/ancestor::a";
 
+    @FindBy(css = ".slds-icon-waffle_container")
+    private WebElement AppLauncherButton;
+
     @FindBy(css = ".appName span")
     private WebElement applicationName;
+
+    public AppLaunchPage clickAppLauncherIcon() {
+        action.click(AppLauncherButton);
+        return new AppLaunchPage();
+    }
 
     public void clickOnTabName(HeaderTab tab) {
         // Method used to click a TAB item in the header.
@@ -29,6 +36,4 @@ public class Header extends AbstractPage {
         // Returns the application name which is next to the AppLauncher button.
         return action.getText(applicationName);
     }
-
-
 }
