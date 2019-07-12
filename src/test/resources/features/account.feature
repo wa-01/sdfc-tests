@@ -1,16 +1,6 @@
-Feature: Projects
+Feature: Accounts
 
   Scenario: Create Basic Account
-    Given I sign in as "account" user and "Password" as password
-    And I click on the App Launcher button and select item "Opportunities"
-#    When I click on New button
-#    And I set the account form
-#      | AccountName    | BasicAcc01 |
-#    Then I validate the account name is "BasicAcc01"
-
-
-
-#    And I set the project form
-#      | name        | account  | privacy |
-#      | MyProject22 | account1 | public  |
-#      | MyProject23 | account2 | private  |
+    Given I sign in as "username" user and "password" as password
+    And I click on the AppLauncher Icon
+    And I select the item "Accounts"
