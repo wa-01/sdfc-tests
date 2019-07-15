@@ -4,8 +4,6 @@ import com.jalasoft.sdfc.enums.Item;
 
 import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.AppLaunchPage;
-import com.jalasoft.sdfc.pages.FactoryPage;
-import com.jalasoft.sdfc.pages.IPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,10 +24,9 @@ public class NavBar extends AbstractPage {
         return new AppLaunchPage();
     }
 
-    public IPage clickOnTabName(Item tab) {
+    public void clickOnTabName(Item tab) {
         // Method used to click a TAB item in the header.
         action.click(By.xpath(String.format(TAB_NAME, tab.getName())));
-        return FactoryPage.getItemPage(tab);
     }
 
 
