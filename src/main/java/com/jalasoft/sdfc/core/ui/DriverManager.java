@@ -19,9 +19,10 @@ public class DriverManager {
 	private WebDriverWait wait;
 
 	private DriverManager() {
+		// info from config.json
+		String browser = "chrome";
+		driver = DriverFactory.getDriver(browser);
 
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 30);
 
