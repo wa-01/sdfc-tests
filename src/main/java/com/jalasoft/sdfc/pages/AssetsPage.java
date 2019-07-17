@@ -6,7 +6,7 @@
  */
 package com.jalasoft.sdfc.pages;
 
-import com.jalasoft.sdfc.pages.BasicNewItemForm;
+import com.jalasoft.sdfc.pages.common.BasicNewItemForm;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
