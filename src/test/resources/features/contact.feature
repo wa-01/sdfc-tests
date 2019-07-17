@@ -8,13 +8,3 @@ Feature: Contactas
     And I set the contact form
       | LastName | MyContact |
     Then I validate the contact label is "MyContact"
-
-
-
-
-
-    #    test
-#  1. Que el contact creado se liste
-#  2. entityNameTitle
-#  3. Details
-#  4. Si esta linkeado a una cuenta se tiene que mostrar en el detail de la cuenta
