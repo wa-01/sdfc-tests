@@ -1,6 +1,6 @@
 package com.jalasoft.sdfc.pages;
 
-import com.jalasoft.sdfc.pages.header.Header;
+import com.jalasoft.sdfc.pages.header.NavBar;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,10 +19,10 @@ public class Signin extends AbstractPage {
         driver.get("https://login.salesforce.com/");
     }
 
-    public Header loginAs(String userName, String password) {
+    public NavBar loginAs(String userName, String password) {
         action.setValue(userNameTextField, userName);
         action.setValue(passwordTextField, password);
         action.click(loginButton);
-        return new Header();
+        return new NavBar();
     }
 }
