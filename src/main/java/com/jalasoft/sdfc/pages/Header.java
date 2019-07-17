@@ -10,8 +10,11 @@ public class Header extends AbstractPage {
 
 
     public AppLaunchPage clickAppLauncherIcon() {
+
         action.click(AppLauncherButton);
+
         return new AppLaunchPage();
+
     }
 
 }

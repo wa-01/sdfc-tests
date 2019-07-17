@@ -1,11 +1,12 @@
-package com.jalasoft.sdfc.pages;/*
+/*
  * @autor: mauricioramirez
  * Project: sdfc
  * Package: com.jalasoft.sdfc.pages
  * Version: 1.0
  */
+package com.jalasoft.sdfc.pages;
 
-import com.jalasoft.sdfc.pages.common.BasicNewItemForm;
+import com.jalasoft.sdfc.pages.BasicNewItemForm;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
