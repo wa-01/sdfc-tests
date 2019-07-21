@@ -1,15 +1,16 @@
 Feature: Create new asset
+  Background:
+    Given I sign in as "mauricio.ramirez.f@gmail.com" user and "tujxuz-mobwuj-2xuFme" as password
 
   Scenario: Create Basic Asset
-    Given I sign in as "username" user and "password" as password
     And I click on the AppLauncher Icon
     And I select the item "Assets"
-    And I click on the "New" button
+    And I click on Assets Page "New" button
     And I set the create form
-      | fieldName   | Asset Name    | Account           |
-      | fieldType   | text          | select            |
-      | value       | test123       | test-account-1    |
+      | fieldType     | fieldName    | value            |
+      | text          | Asset Name  | test123           |
+      | select        | Account     | test-account-1    |
 
-    When I click the save button
+    When I click the "Save" button on new item Form Page
 
     Then I should see a new row

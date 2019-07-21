@@ -7,7 +7,11 @@
 package com.jalasoft.sdfc.pages.common;
 
 import com.jalasoft.sdfc.pages.AbstractPage;
+import com.jalasoft.sdfc.core.ui.ISteps;
 import org.openqa.selenium.By;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class BasicNewItemForm extends AbstractPage {
 
@@ -36,12 +40,25 @@ public class BasicNewItemForm extends AbstractPage {
 
     }
 
-    // TODO: this should return a PageFactory
+    // TODO: this should return a BasicPageFactory
     public void clickFooterButton(String name) {
 
         String buttonXpath = String.format(FOOTER_BUTTON, name);
 
         action.click(By.xpath(buttonXpath));
+
+    }
+
+    public void setFormFields(Map<String, String[]> data) {
+        Map<String, ISteps> strategyMap = new HashMap<>();
+
+        strategyMap.put("text", () -> this.fillTextField(data.get("text")[0], data.get("text")[1]));
+        strategyMap.put("select", () -> this.clickSelectFieldAndSelect(data.get("select")[0], data.get("select")[1]));
+
+        Set<String> keys = data.keySet();
+        for (String key : keys) {
+            strategyMap.get(key).execute();
+        }
 
     }
 
