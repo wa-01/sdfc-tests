@@ -9,7 +9,9 @@ package com.jalasoft.sdfc.pages.common;
 import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
 
-public class BasicForm extends AbstractPage {
+import java.util.Map;
+
+public abstract class BasicForm extends AbstractPage {
 
     private static final String TEXT_FIELD = "//label/span[contains(text(), '%s')]/" +
             "ancestor::div[contains(@class, 'slds-form-element')]/descendant::input";
@@ -27,30 +29,33 @@ public class BasicForm extends AbstractPage {
             "descendant::span[text() = '%s']/parent::button";
 
     public void fillTextField(String label, String text) {
-
         String selectorXpath = String.format(TEXT_FIELD, label);
-
         action.setValue(By.xpath(selectorXpath), text);
-
     }
 
     public void selectOptionInTextField(String label, String option) {
+        action.click(By.xpath(String.format(TEXT_FIELD, label)));
+        action.click(By.xpath(String.format(TEXT_FIELD_OPTION, label, option)));
+    }
 
-        String textFieldXpath = String.format(TEXT_FIELD, label);
-        String optionXpath = String.format(TEXT_FIELD_OPTION, label, option);
+    public void selectOptionInSelectField(String label, String option) {
+        action.click(By.xpath(String.format(SELECT_FIELD, label)));
+        action.click(By.xpath(String.format(SELECT_FIELD_OPTION, option)));
+    }
 
-        action.setValue(By.xpath(textFieldXpath), option);
-        action.click(By.xpath(optionXpath));
+    public void fillTextArea(String label, String text) {
+        action.setValue(By.xpath(String.format(TEXT_AREA, label)), text);
+    }
 
+    public void selectCheckBox(String label) {
+        action.click(By.xpath(String.format(CHECK_BOX, label)));
     }
 
     // TODO: this should return a PageFactory
-    public void clickFooterButton(String name) {
-
-        String buttonXpath = String.format(FOOTER_BUTTON, name);
-
+    public void clickFooterButton(String btnName) {
+        String buttonXpath = String.format(FOOTER_BUTTON, btnName);
         action.click(By.xpath(buttonXpath));
-
     }
 
+    public abstract void setFormFields(Map<String, String> data);
 }

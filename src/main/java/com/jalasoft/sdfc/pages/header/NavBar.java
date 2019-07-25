@@ -29,11 +29,11 @@ public class NavBar extends AbstractPage {
         action.click(By.xpath(String.format(TAB_NAME, tab.getName())));
     }
 
-
-    public void clickOnTabNameArrow(Item tab) {
+    public NavBarMenu clickOnTabNameArrow(Item tab) {
         // Method used to click in the arrow of a TAB item if exists in the header.
         String tabName = String.format(TAB_NAME, tab.getName());
         action.click(By.xpath(String.format(TAB_NAME_ARROW, tabName, tab.getName())));
+        return new NavBarMenu();
     }
 
     public String getApplicationName() {
