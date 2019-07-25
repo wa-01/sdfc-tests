@@ -57,5 +57,5 @@ public abstract class BasicForm extends AbstractPage {
         action.click(By.xpath(buttonXpath));
     }
 
-    public abstract void setFormFields(Map<String, String> data);
+    public abstract void setDataInFormFields(Map<String, String> data);
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class OpportunityForm extends BasicForm {
     @Override
-    public void setFormFields(Map<String, String> data) {
+    public void setDataInFormFields(Map<String, String> data) {
         Map<String, ISteps> strategyMap = new HashMap<>();
         strategyMap.put("amount",() -> fillTextArea("Amount", data.get("amount")));
         strategyMap.put("private",() -> setPrivate(data.get("private")));
@@ -43,7 +43,7 @@ public class OpportunityForm extends BasicForm {
     }
 
     public OpportunityView createOpportunity(Map<String, String> data) {
-        setFormFields(data);
+        setDataInFormFields(data);
         clickFooterButton("Save");
         return new OpportunityView();
     }
