@@ -65,6 +65,11 @@ public class WebDriverAction {
         return webElement.isSelected();
     }
 
+    public boolean isSelected(By selector) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+        return driver.findElement(selector).isSelected();
+    }
+
     public boolean isElementVisible(final By element) {
         try {
             driver.findElement(element);
