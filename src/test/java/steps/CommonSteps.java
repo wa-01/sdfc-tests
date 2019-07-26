@@ -10,29 +10,23 @@ import java.util.Map;
 
 public class CommonSteps {
 
-    private BasicForm basicForm;
-    private Signin signin;
-
-    public CommonSteps ( BasicForm basicForm, Signin signin ) {
-        this.basicForm = basicForm;
-        this.signin = signin;
-    }
-
+    private BasicForm basicForm = new BasicForm();
     @Given("I sign in as {string} user and {string} as password")
-    public void iSignInAsUserAnd ( String userName, String password ) {
+    public void iSignInAsUserAnd(String userName, String password) {
+        Signin signin = new Signin();
         signin.loginAs(userName, password);
     }
 
     @Given("I fill the create form and click the {string} button")
-    public void iSetCreateForm ( String buttonName, List<Map<String, String>> data ) {
+    public void iSetCreateForm(String buttonName, List<Map<String, String>> data) {
         Map<String, Map<String, String>> dataFields = new HashMap<>();
-        for (Map<String, String> dataRow : data) {
+        for (Map<String, String> dataRow: data) {
             if (dataFields.containsKey(dataRow.get("fieldType"))) {
                 dataFields.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
             } else {
                 Map<String, String> values = new HashMap<>();
                 values.put(dataRow.get("fieldName"), dataRow.get("value"));
-                dataFields.put(dataRow.get("fieldType"), values);
+                dataFields.put(dataRow.get("fieldType"),values);
             }
         }
         basicForm.setFormFields(dataFields);
