@@ -3,6 +3,7 @@ package steps;
 import com.jalasoft.sdfc.pages.contacts.ContactDetails;
 import com.jalasoft.sdfc.pages.contacts.ContactsPage;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
@@ -11,24 +12,21 @@ import java.util.Map;
 
 public class ContactSteps {
 
-    private ContactDetails contactDetails;
-
-    @When("I click the new button")
-    public void iClickTheNewButton() {
-        ContactsPage contact = new ContactsPage();
-        contact.clickNewButton();
+    public ContactSteps ( ContactDetails contactDetails, ContactsPage contactsPage ) {
+        this.contactDetails = contactDetails;
+        this.contactsPage = contactsPage;
     }
 
+    private ContactDetails contactDetails;
+    private ContactsPage contactsPage;
 
-    @And("I set the contact form")
-    public void iSetTheContactForm(Map<String, String> data) {
-        ContactsPage contact = new ContactsPage();
-        contactDetails = contact.createContact(data);
-
+    @When("I click on the Add New Contact button")
+    public void iClickOnTheAddNewContactButton () {
+        contactsPage.clickNewButton();
     }
 
     @Then("I validate the contact label is {string}")
-    public void iValidateTheContactLabelIs(String name) {
+    public void iValidateTheContactLabelIs ( String name ) {
         String actualContactName = contactDetails.getProjectNameLabel();
         Assert.assertEquals(actualContactName, name);
     }

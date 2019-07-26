@@ -20,23 +20,8 @@ public class ContactsPage extends AbstractPage {
     @FindBy(css = "button[title=\"Save\"]")
     private WebElement saveButton;
 
-    public void clickNewButton() {
+    public void clickNewButton () {
         action.click(newButton);
     }
 
-    public void setContactFields(Map<String, String> data) {
-        Map<String, ISteps> strategyMap = new HashMap<>();
-        strategyMap.put("LastName", () -> action.setValue(ContactLastNameTextField, data.get("LastName")));
-
-        Set<String> keys = data.keySet();
-        for (String key : keys) {
-            strategyMap.get(key).execute();
-        }
-    }
-
-    public ContactDetails createContact(Map<String, String> data) {
-        setContactFields(data);
-        action.click(saveButton);
-        return new ContactDetails();
-    }
 }
