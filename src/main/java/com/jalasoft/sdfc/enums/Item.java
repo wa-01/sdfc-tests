@@ -17,7 +17,8 @@ public enum Item {
     CALENDAR("Calendar"),
     PEOPLE("People"),
     CASES("Cases"),
-    FORECASTS("Forecasts");
+    FORECASTS("Forecasts"),
+    ASSETS("Assets");
 
     private final String itemName;
 
