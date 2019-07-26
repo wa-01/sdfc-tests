@@ -12,6 +12,10 @@ Feature: Contacts
       | text      | Last Name | <LastName> |
       | text      | First Name | <FirstName> |
     Then I validate the contact label is "Pepito Perez"
+#    And I click on details tab
+#    And I validate the contact name is "Pepito Perez"
+#    And I click on Contacts tab
+#    And I validate the contact "Pepito Perez" is visible in the table
 
     Examples:
       | LastName | FirstName|
