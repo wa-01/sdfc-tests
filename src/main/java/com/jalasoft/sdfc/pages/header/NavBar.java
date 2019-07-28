@@ -26,7 +26,7 @@ public class NavBar extends AbstractPage {
 
     public void clickOnTabName(Item tab) {
         // Method used to click a TAB item in the header.
-        action.click(By.xpath(String.format(TAB_NAME, tab.getName())));
+        action.mouseClick(By.xpath(String.format(TAB_NAME, tab.getName())));
     }
 
     public NavBarMenu clickOnTabNameArrow(Item tab) {

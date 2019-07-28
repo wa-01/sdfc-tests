@@ -4,6 +4,7 @@ import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class OpportunityPage extends AbstractPage {
     // Opportunity name in the table (set name of opportunity)
@@ -12,7 +13,7 @@ public class OpportunityPage extends AbstractPage {
     private static String ROW_OPPORTUNITY_NAME = CELL_OPPORTUNITY_NAME + "/ancestor::tr";
     // Allows to select a cell by its column name in the table (set opportunity name and column name)
     private static String CELL_OPPORTUNITY_COLUMN = ROW_OPPORTUNITY_NAME + "/td[count(//table/thead/descendant::" +
-            "span[text()='%s']/preceding::th)]/descendant::span[@class='slds-truncate']";
+            "span[text()='%s']/preceding::th)]/descendant::span[contains(@class,'slds-truncate')]";
     private static String CELL_OPPORTUNITY_COLUMN_LINK = ROW_OPPORTUNITY_NAME + "/td[count(//table/thead/descendant::" +
             "span[text()='%s']/preceding::th)]/descendant::a[contains(@class,'slds-truncate')]";
     // The actions button in the row (set name of opportunity)
@@ -20,10 +21,11 @@ public class OpportunityPage extends AbstractPage {
     // To select a menu item after clicking the ACTIONS_BUTTON (Edit, Delete, Change Owner)
     private static String ACTION_MENU_ITEM = "//div[@role='menu']/descendant::a[@title='%s']";
 
-    @FindBy(css = "a[title='New'][role='button']")
+    @FindBy(xpath = "//div[@title='New']/parent::a")
     private WebElement newButton;
 
     public void clickNewButton(){
+        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".transitioning")));
         action.click(newButton);
     }
 
