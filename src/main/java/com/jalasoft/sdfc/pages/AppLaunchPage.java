@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class AppLaunchPage extends AbstractPage {
 
-    private static final String ITEM_LINK = "//a[@title='%s']";
+    private static final String ITEM_LINK = "//a[@title='%s']/descendant::span[@class='label slds-truncate slds-text-link']";
 
     // TODO: this should return a page factory
     public AbstractPage clickOnItem(Item item) {

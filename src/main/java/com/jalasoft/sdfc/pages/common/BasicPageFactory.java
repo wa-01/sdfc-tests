@@ -14,7 +14,7 @@ public class BasicPageFactory {
 
     static {
         PAGES.put("assets", AssetsPage::new);
-        PAGES.put("newItemForm", BasicNewItemForm::new);
+        PAGES.put("newItemForm", BasicForm::new);
         PAGES.put("appLauncher", AppLaunchPage::new);
     }
 
