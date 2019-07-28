@@ -10,8 +10,12 @@ import cucumber.api.java.Before;
 public class Hooks {
 
     @Before
-    public void tearDown() {
-        DriverManager.getInstance().getDriver().get("https://na132.lightning.force.com/lightning/setup/SetupOneHome/home");
+    public void setUp() {
+        if (!DriverManager.getInstance().getDriver().getTitle().contains("Salesforce")){
+            DriverManager.getInstance().getDriver().get("https://login.salesforce.com/");
+        }else {
+            DriverManager.getInstance().getDriver().get("https://na132.lightning.force.com/lightning/setup/SetupOneHome/home");
+        }
     }
 
 }
