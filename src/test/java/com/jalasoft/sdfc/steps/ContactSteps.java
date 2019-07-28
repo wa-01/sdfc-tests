@@ -1,14 +1,10 @@
-package steps;
+package com.jalasoft.sdfc.steps;
 
 import com.jalasoft.sdfc.pages.contacts.ContactDetails;
 import com.jalasoft.sdfc.pages.contacts.ContactsPage;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
-
-import java.util.Map;
 
 public class ContactSteps {
 

@@ -1,4 +1,4 @@
-package steps;
+package com.jalasoft.sdfc.steps;
 
 import com.jalasoft.sdfc.pages.Signin;
 import com.jalasoft.sdfc.pages.common.BasicForm;

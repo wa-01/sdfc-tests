@@ -19,3 +19,19 @@ dependencies {
     compile group: 'io.cucumber', name: 'cucumber-testng', version: '4.2.6'
     testCompile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '4.4.0'
 }
+
+task executeFeatures(type: Test) {
+    doFirst {
+        useTestNG()
+        options {
+            useDefaultListeners = false
+            jvmArgs = ['-Dcucumber.options= ' +
+                               '--glue com.jalasoft.sdfc ' +
+                               '--plugin pretty ']
+        }
+        testLogging.showStandardStreams = true
+        scanForTestClasses = false
+        ignoreFailures = false
+        reports.html.enabled = false
+    }
+}
