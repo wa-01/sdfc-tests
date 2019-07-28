@@ -1,7 +1,7 @@
 Feature: Contacts
 
   Background:
-    Given I sign in as "mfuentes@test.com" user and "BQEmagui1" as password
+    Given I sign in as "owner"
     And I click on the AppLauncher Icon
     And I select the item "Contacts"
     And I click on the Add New Contact button

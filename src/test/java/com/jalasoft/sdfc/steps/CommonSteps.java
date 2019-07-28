@@ -1,5 +1,6 @@
 package com.jalasoft.sdfc.steps;
 
+import com.jalasoft.sdfc.core.Environment;
 import com.jalasoft.sdfc.pages.Signin;
 import com.jalasoft.sdfc.pages.common.BasicForm;
 import com.jalasoft.sdfc.pages.header.Header;
@@ -14,17 +15,20 @@ import static org.testng.Assert.assertEquals;
 
 public class CommonSteps {
 
-    public CommonSteps(BasicForm basicForm, Header header) {
+    public CommonSteps(BasicForm basicForm, Header header, Signin signin) {
         this.basicForm = basicForm;
         this.header = header;
+        this.signin = signin;
     }
 
     private BasicForm basicForm;
     private Header header;
+    private Signin signin;
 
-    @Given("I sign in as {string} user and {string} as password")
-    public void iSignInAsUserAnd(String userName, String password) {
-        Signin signin = new Signin();
+    @Given("I sign in as {string}")
+    public void iSignInAsUserAnd(String user) {
+        String userName = Environment.getInstance().getValue(String.format("$['credentials']['%s']['username']", user));
+        String password = Environment.getInstance().getValue(String.format("$['credentials']['%s']['password']", user));
         signin.loginAs(userName, password);
     }
 

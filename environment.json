@@ -1,0 +1,13 @@
+{
+  "credentials" : {
+    "owner" : {
+      "username" : "mfuentes@test.com",
+      "password" : "BQEmagui1"
+    },
+    "member" : {
+      "username" : "",
+      "password" : ""
+    }
+  },
+  "browser" : "chrome"
+}
