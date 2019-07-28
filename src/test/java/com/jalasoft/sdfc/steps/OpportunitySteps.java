@@ -7,6 +7,7 @@ import com.jalasoft.sdfc.pages.opportunities.view.OpportunityView;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 import java.util.*;
 
@@ -81,5 +82,30 @@ public class OpportunitySteps {
         for (String key : keys) {
             assertEquals(strategyMap.get(key).getText(), data.get(key));
         }
+    }
+
+    @And("I edit the opportunity {string} in the table with the following values")
+    public void iEditTheOpportunityInTheTableWithTheFollowingValues(String name, Map<String, String> data) {
+        opportunityPage.editOpportunityCells(name, data);
+    }
+
+    @And("I click {string} button after edit the opportunity table")
+    public void iClickButtonAfterEditTheOpportunityTable(String btnName) {
+        opportunityPage.clickSaveCancelButton(btnName);
+    }
+
+    @And("I click the opportunity {string} in the table")
+    public void iClickTheOpportunityInTheTable(String name) {
+        opportunityPage.clickOpportunityInTheTable(name);
+    }
+
+    @When("I select the opportunity {string} and click the {string} action")
+    public void iSelectTheOpportunityAndClickTheAction(String name, String actionName) {
+        opportunityPage.clickAction(name, actionName);
+    }
+
+    @And("I validate the opportunity {string} is not in the table")
+    public void iValidateTheOpportunityIsNotInTheTable(String name) {
+        assertFalse(opportunityPage.isOpportunityInTable(name));
     }
 }

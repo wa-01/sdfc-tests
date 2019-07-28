@@ -3,6 +3,7 @@ package com.jalasoft.sdfc.steps;
 import com.jalasoft.sdfc.enums.Item;
 import com.jalasoft.sdfc.pages.Signin;
 import com.jalasoft.sdfc.pages.common.BasicForm;
+import com.jalasoft.sdfc.pages.common.ModalDialog;
 import com.jalasoft.sdfc.pages.header.Header;
 import com.jalasoft.sdfc.pages.header.NavBar;
 import com.jalasoft.sdfc.pages.header.NavBarMenu;
@@ -24,12 +25,14 @@ public class CommonSteps {
     private Header header;
     private NavBar navBar;
     private NavBarMenu navBarMenu;
+    private ModalDialog modalDialog;
 
-    public CommonSteps(BasicForm basicForm, Header header, NavBar navBar, NavBarMenu navBarMenu) {
+    public CommonSteps(BasicForm basicForm, Header header, NavBar navBar, NavBarMenu navBarMenu, ModalDialog modalDialog) {
         this.basicForm = basicForm;
         this.header = header;
         this.navBar = navBar;
         this.navBarMenu = navBarMenu;
+        this.modalDialog = modalDialog;
     }
 
     @Given("I sign in as {string} user and {string} as password")
@@ -68,5 +71,16 @@ public class CommonSteps {
     @Then("I validate the notification message says {string}")
     public void iValidateTheNotificationMessageSaysOpportunityWasCreated(String message) {
         assertEquals(header.getVisualMessageQueue(), message);
+    }
+
+    @And("I click {string} in the modal dialog")
+    public void iClickInTheModalDialog(String btnName) {
+        this.modalDialog.clickButton(btnName);
+    }
+
+    @And("I validate the opportunity {string} is not in the {string} menu")
+    public void iValidateTheOpportunityIsNotInTheMenu(String name, String menuName) {
+        navBar.clickOnTabNameArrow(Item.valueOfItem(menuName));
+        assertFalse(navBarMenu.isMenuItemVisible(name));
     }
 }
