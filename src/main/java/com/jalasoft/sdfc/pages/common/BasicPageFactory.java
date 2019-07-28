@@ -2,7 +2,7 @@ package com.jalasoft.sdfc.pages.common;
 
 import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.AppLaunchPage;
-import com.jalasoft.sdfc.pages.AssetsPage;
+import com.jalasoft.sdfc.pages.Assets.AssetsPage;
 
 import java.util.HashMap;
 import java.util.Map;

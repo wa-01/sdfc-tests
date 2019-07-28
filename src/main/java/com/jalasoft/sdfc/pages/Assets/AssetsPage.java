@@ -4,8 +4,9 @@
  * Package: com.jalasoft.sdfc.pages
  * Version: 1.0
  */
-package com.jalasoft.sdfc.pages;
+package com.jalasoft.sdfc.pages.Assets;
 
+import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.common.BasicNewItemForm;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

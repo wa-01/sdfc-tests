@@ -5,7 +5,7 @@ package steps;/*
  * Version: 1.0
  */
 
-import com.jalasoft.sdfc.pages.AssetsPage;
+import com.jalasoft.sdfc.pages.Assets.AssetsPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
