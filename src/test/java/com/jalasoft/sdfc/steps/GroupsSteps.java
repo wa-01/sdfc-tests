@@ -1,16 +1,16 @@
-package steps;
+package com.jalasoft.sdfc.steps;
 
+import com.jalasoft.sdfc.core.ui.IString;
 import com.jalasoft.sdfc.pages.common.BasicForm;
 import com.jalasoft.sdfc.pages.groups.GroupsDashboard;
 import com.jalasoft.sdfc.pages.groups.GroupsPage;
 import com.jalasoft.sdfc.pages.header.NavBar;
 import com.jalasoft.sdfc.pages.header.NavBarMenu;
-import com.sun.tools.javac.util.List;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class GroupsSteps {
     GroupsPage groupsPage;
@@ -38,6 +38,11 @@ public class GroupsSteps {
         groupsPage.clickNewButtonGroups();
     }
 
+    @And("I click the {string} button")
+    public void iClickTheButton(String arg0) {
+        System.out.print("Hi");
+    }
+/*
     @And("I fill form with following attributes")
     public void iFillFormWithFollowingAttributes(List<Map<String, String>> data) {
         Map<String, Map<String, String>> dataFields = new HashMap<>();
@@ -51,5 +56,5 @@ public class GroupsSteps {
             }
         }
         basicForm.setFormFields(dataFields);
-    }
+    }*/
 }

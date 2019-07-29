@@ -26,18 +26,19 @@ public class CommonSteps {
     private NavBar navBar;
     private NavBarMenu navBarMenu;
     private ModalDialog modalDialog;
+    Signin signin;
 
-    public CommonSteps(BasicForm basicForm, Header header, NavBar navBar, NavBarMenu navBarMenu, ModalDialog modalDialog) {
+    public CommonSteps(BasicForm basicForm, Header header, NavBar navBar, NavBarMenu navBarMenu, ModalDialog modalDialog, Signin signin) {
         this.basicForm = basicForm;
         this.header = header;
         this.navBar = navBar;
         this.navBarMenu = navBarMenu;
         this.modalDialog = modalDialog;
+        this.signin = signin;
     }
 
     @Given("I sign in as {string} user and {string} as password")
     public void iSignInAsUserAnd(String userName, String password) {
-        Signin signin = new Signin();
         signin.loginAs(userName, password);
     }
 
