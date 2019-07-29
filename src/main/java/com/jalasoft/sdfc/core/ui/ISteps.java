@@ -4,5 +4,4 @@ package com.jalasoft.sdfc.core.ui;
 public interface ISteps {
 
 	void execute();
-
 }

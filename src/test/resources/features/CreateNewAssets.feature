@@ -14,4 +14,6 @@ Feature: Create new asset
 
     When I click the "Save" button on new item Form Page
 
-    Then I should see a new row
+    Then I verify that the title on "Asset" page is "test123"
+    And I verify that "Asset Name" inner form text field is "test123"
+    And I verify that "test123" is on dropdown menu of "Assets" tab

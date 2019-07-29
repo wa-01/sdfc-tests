@@ -23,4 +23,10 @@ public class NavBarMenu extends AbstractPage {
     public void clickMenuItem(String item) {
         action.click(By.xpath(String.format(MENU_ITEM, item)));
     }
+
+    public void getMenuItem(String itemName) {
+        String itemLocator = String.format(MENU_ITEM, itemName);
+
+        driver.findElement(By.xpath(itemLocator));
+    }
 }

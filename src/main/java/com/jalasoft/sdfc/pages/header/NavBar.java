@@ -34,8 +34,10 @@ public class NavBar extends AbstractPage {
 
     public NavBarMenu clickOnTabNameArrow(Item tab) {
         // Method used to click in the arrow of a TAB item if exists in the header.
-        String tabName = String.format(TAB_NAME, tab.getName());
-        action.click(By.xpath(String.format(TAB_NAME_ARROW, tabName, tab.getName())));
+        String tabNameLocator = String.format(TAB_NAME, tab.getName());
+        String arrowButtonLocator = String.format(TAB_NAME_ARROW, tabNameLocator, tab.getName());
+
+        action.click(By.xpath(arrowButtonLocator));
         return new NavBarMenu();
     }
 
