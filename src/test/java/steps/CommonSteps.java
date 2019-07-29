@@ -23,19 +23,29 @@ public class CommonSteps {
         signin.loginAs(userName, password);
     }
 
+    @Given("I fill the create form with")
+    public void iFillTheCreateFormWith(List<Map<String, String>> data) {
+        Map<String, Map<String, String>> dataFields = new HashMap<>();
+
+        for (Map<String, String> dataRow: data) {
+            if (!dataFields.containsKey(dataRow.get("fieldType"))) {
+                dataFields.put(dataRow.get("fieldType"), new HashMap<>());
+            }
+
+            dataFields.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
+        }
+
+        basicForm.setFormFields(dataFields);
+    }
+
     @Given("I fill the create form and click the {string} button")
     public void iSetCreateForm(String buttonName, List<Map<String, String>> data) {
-        Map<String, Map<String, String>> dataFields = new HashMap<>();
-        for (Map<String, String> dataRow: data) {
-            if (dataFields.containsKey(dataRow.get("fieldType"))) {
-                dataFields.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
-            } else {
-                Map<String, String> values = new HashMap<>();
-                values.put(dataRow.get("fieldName"), dataRow.get("value"));
-                dataFields.put(dataRow.get("fieldType"),values);
-            }
-        }
-        basicForm.setFormFields(dataFields);
+        iFillTheCreateFormWith(data);
+        basicForm.clickFooterButton(buttonName);
+    }
+
+    @When("I click the {string} button on new item Form Page")
+    public void iClickTheButtonOnNewItemFormPage(String buttonName) {
         basicForm.clickFooterButton(buttonName);
     }
 }

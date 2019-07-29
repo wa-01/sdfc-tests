@@ -6,10 +6,11 @@ Feature: Create new asset
     And I click on the AppLauncher Icon
     And I select the item "Assets"
     And I click on Assets Page "New" button
-    And I set the create form
-      | fieldType     | fieldName    | value            |
-      | text          | Asset Name  | test123           |
-      | select        | Account     | test-account-1    |
+    And I fill the create form with
+      | fieldType   | fieldName      | value             |
+      | text        | Asset Name     | test123           |
+      | text        | Serial Number  | 1234567899        |
+      | text_option | Account        | test-account-1    |
 
     When I click the "Save" button on new item Form Page
 
