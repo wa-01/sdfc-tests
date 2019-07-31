@@ -1,4 +1,4 @@
-package steps;
+package com.jalasoft.sdfc.steps;
 
 import com.jalasoft.sdfc.pages.contacts.ContactDetails;
 import com.jalasoft.sdfc.pages.contacts.ContactsPage;
