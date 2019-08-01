@@ -1,10 +1,6 @@
 {
   "credentials" : {
-    "owner" : {
-      "username" : "",
-      "password" : ""
-    },
-    "member" : {
+    "sf_user" : {
       "username" : "",
       "password" : ""
     }

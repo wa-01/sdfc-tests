@@ -1,13 +1,9 @@
 {
-  "credentials" : {
-    "owner" : {
-      "username" : "mfuentes@test.com",
-      "password" : "BQEmagui1"
-    },
-    "member" : {
-      "username" : "",
-      "password" : ""
+  "credentials": {
+    "sf_user": {
+      "username": "mfuentes@test.com",
+      "password": "BQEmagui1"
     }
   },
-  "browser" : "chrome"
+  "browser": "chrome"
 }

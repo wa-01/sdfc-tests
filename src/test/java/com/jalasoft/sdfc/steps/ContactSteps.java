@@ -49,11 +49,6 @@ public class ContactSteps {
         String actualContactName = contactDetails.getContactNameDetails();
         Assert.assertEquals(actualContactName, name);
     }
-//
-//    @And("I click on Contacts tab")
-//    public void iClickOnContactsTab() {
-//        contactDetails.clickContactTab();
-//    }
 
     @And("I validate the contact {string} is visible in the table")
     public void iValidateTheContactIsVisibleInTheTable(String name) {
