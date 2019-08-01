@@ -33,28 +33,15 @@ public class GroupsPage extends AbstractPage {
         action.click(newButton);
     }
 
-    public void create_public_group(Map<String, String> data) {
-        Map<String, ISteps> strategyMap = new HashMap<>();
-        strategyMap.put("Name", () -> action.setValue(nameField, data.get("name")));
-        strategyMap.put("Owner", () -> action.setValue(ownerField, data.get("owner")));
-//        strategyMap.put("owner", () -> selectAccount(data.get("account")));
-//        strategyMap.put("accessType", () -> action.click(By.cssSelector(String.format(PRIVACY_CSS, data.get("privacy")))));
-//
-        Set<String> keys = data.keySet();
-        for (String key : keys) {
-            //strategyMap.get(key).execute();
-            System.out.println(data.get(key));
-            strategyMap.get(data.get(key)).execute();
-            System.out.println("HOLS");
-        }
-        //action.click(saveButton);
-    }
-
 /*
     private void selectOwner(String expectedOwner) {
         //action.click();
         String optionAccountLocator = String.format(OPTION_ACCOUNT_XPATH, expectedOwner);
         action.click(By.xpath(optionAccountLocator));
     }*/
+
+public void selectType(){
+    System.out.println("Hola");
+}
 
 }

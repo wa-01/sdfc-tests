@@ -3,6 +3,8 @@ package com.jalasoft.sdfc.pages.common;
 import com.jalasoft.sdfc.core.ui.ISteps;
 import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,11 +29,13 @@ public class BasicForm extends AbstractPage {
 
     public void fillTextField(String label, String text) {
         String selectorXpath = String.format(TEXT_FIELD, label);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(selectorXpath)));
         action.setValue(By.xpath(selectorXpath), text);
     }
 
     public void selectOptionInTextField(String label, String option) {
-        action.setValue(By.xpath(String.format(TEXT_FIELD, label)), option);
+        String selectorXpath = String.format(TEXT_FIELD, label);
+        action.setValue(By.xpath(selectorXpath), option);
         action.click(By.xpath(String.format(TEXT_FIELD_OPTION, label, option)));
     }
 
@@ -41,16 +45,19 @@ public class BasicForm extends AbstractPage {
     }
 
     public void fillTextArea(String label, String text) {
-        action.setValue(By.xpath(String.format(TEXT_AREA, label)), text);
+        String selectorXpath = String.format(TEXT_AREA, label);
+                action.setValue(By.xpath(selectorXpath), text);
     }
 
     public void selectCheckBox(String label, String value) {
-        boolean isSelected = action.isSelected(By.xpath(String.format(CHECK_BOX, label)));
-        if (value.equals("select") && !isSelected){
+        String selectorXpath = String.format(CHECK_BOX, label);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectorXpath)));
+        boolean isSelected = action.isSelected(By.xpath(selectorXpath));
+        if (value.equals("select") && !isSelected) {
             action.click(By.xpath(String.format(CHECK_BOX, label)));
         }
 
-        if (value.equals("unselect") && isSelected){
+        if (value.equals("unselect") && isSelected) {
             action.click(By.xpath(String.format(CHECK_BOX, label)));
         }
     }
@@ -61,7 +68,7 @@ public class BasicForm extends AbstractPage {
         action.click(By.xpath(buttonXpath));
     }
 
-    public void setFormFields(Map<String,Map<String, String>> data) {
+    public void setFormFields(Map<String, Map<String, String>> data) {
         Map<String, ISteps> strategyMap = new HashMap<>();
 
         strategyMap.put("text", () -> data.get("text").forEach(this::fillTextField));

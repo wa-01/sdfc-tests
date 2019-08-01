@@ -6,16 +6,21 @@ import com.jalasoft.sdfc.pages.header.NavBar;
 import cucumber.api.java.en.And;
 
 public class AppLaunch {
+    private NavBar navBar;
+    private AppLaunchPage appLauncher;
+
+    public AppLaunch(NavBar navBar, AppLaunchPage appLauncher) {
+        this.navBar = navBar;
+        this.appLauncher = appLauncher;
+    }
 
     @And("I click on the AppLauncher Icon")
     public void iClickOnTheAppLauncherIcon() {
-        NavBar navBar = new NavBar();
         navBar.clickAppLauncherIcon();
     }
 
     @And("I select the item {string}")
     public void iSelectTheItem(String item) {
-        AppLaunchPage appLauncher = new AppLaunchPage();
         appLauncher.clickOnItem(Item.valueOfItem(item));
     }
 }

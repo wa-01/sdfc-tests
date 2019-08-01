@@ -1,27 +1,30 @@
 package com.jalasoft.sdfc.steps;
 
+import com.jalasoft.sdfc.core.ui.ISteps;
 import com.jalasoft.sdfc.core.ui.IString;
 import com.jalasoft.sdfc.pages.common.BasicForm;
-import com.jalasoft.sdfc.pages.groups.GroupsDashboard;
+import com.jalasoft.sdfc.pages.groups.GroupDetails;
 import com.jalasoft.sdfc.pages.groups.GroupsPage;
 import com.jalasoft.sdfc.pages.header.NavBar;
 import com.jalasoft.sdfc.pages.header.NavBarMenu;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class GroupsSteps {
     GroupsPage groupsPage;
-    private GroupsDashboard groupsDashboard;
+    private GroupDetails groupDetails;
     private NavBarMenu navBarMenu;
     private NavBar navBar;
     private BasicForm basicForm;
 
-    public GroupsSteps(GroupsPage groupsPage, GroupsDashboard groupsDashboard, NavBarMenu navBarMenu, NavBar navBar, BasicForm basicForm) {
+    public GroupsSteps(GroupsPage groupsPage, GroupDetails groupDetails, NavBarMenu navBarMenu, NavBar navBar, BasicForm basicForm) {
         this.groupsPage = groupsPage;
-        this.groupsDashboard = groupsDashboard;
+        this.groupDetails = groupDetails;
         this.navBarMenu = navBarMenu;
         this.navBar = navBar;
         this.basicForm = basicForm;
@@ -33,18 +36,18 @@ public class GroupsSteps {
         throw new cucumber.api.PendingException();
     }
 
-    @When("I click the New button")
-    public void iClickTheNewButton() {
+    @When("I click New button")
+    public void iClickNewButton() {
         groupsPage.clickNewButtonGroups();
     }
 
-    @And("I click the {string} button")
-    public void iClickTheButton(String arg0) {
-        System.out.print("Hi");
+    @And("I click {string} button")
+    public void iClickButton(String arg0) {
+        basicForm.clickFooterButton(arg0);
     }
-/*
-    @And("I fill form with following attributes")
-    public void iFillFormWithFollowingAttributes(List<Map<String, String>> data) {
+
+    @And("I fill the create form")
+    public void iFillTheCreateForm(List<Map<String, String>> data) {
         Map<String, Map<String, String>> dataFields = new HashMap<>();
         for (Map<String, String> dataRow: data) {
             if (dataFields.containsKey(dataRow.get("fieldType"))) {
@@ -56,5 +59,5 @@ public class GroupsSteps {
             }
         }
         basicForm.setFormFields(dataFields);
-    }*/
+    }
 }
