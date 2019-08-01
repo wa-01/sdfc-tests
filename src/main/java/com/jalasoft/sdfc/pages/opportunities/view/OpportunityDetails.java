@@ -11,7 +11,17 @@ public class OpportunityDetails extends AbstractPage {
     private static String SPAN_VALUE = "//span[contains(text(),'%s')]/parent::div/following-sibling::div/" +
             "descendant::span[contains(@class,'test-id__field-value')]/span";
 
-    public String getSpanTextValue(String label) {
+    private static String PRIVATE_CHECKBOX = SPAN_VALUE + "/img";
+
+    public String getFieldValue(String label) {
+        if (label.equals("Private"))
+            return isPrivateSelected() ? "select" : "unselect";
         return action.getText(By.xpath(String.format(SPAN_VALUE, label)));
     }
+
+    public boolean isPrivateSelected(){
+        String attribute = action.getAttribute(By.xpath(String.format(PRIVATE_CHECKBOX, "Private")), "alt");
+        return Boolean.valueOf(attribute);
+    }
+
 }

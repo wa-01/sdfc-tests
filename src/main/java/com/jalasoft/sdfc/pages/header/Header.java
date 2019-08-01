@@ -7,9 +7,11 @@ import org.openqa.selenium.support.FindBy;
 public class Header extends AbstractPage {
 
     @FindBy(xpath = "//div[@class='forceVisualMessageQueue']/descendant::span[@data-aura-class='forceActionsText']")
+
     private WebElement visualSuccessMessage;
 
-    public String getSuccessMessage() {
+    public String getVisualMessageQueue() {
         return action.getText(visualSuccessMessage);
+
     }
 }

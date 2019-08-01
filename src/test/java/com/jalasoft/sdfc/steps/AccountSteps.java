@@ -4,15 +4,10 @@ import com.jalasoft.sdfc.pages.accounts.AccountDetails;
 import com.jalasoft.sdfc.pages.accounts.AccountsPage;
 import com.jalasoft.sdfc.pages.accounts.AccountsTablePage;
 import com.jalasoft.sdfc.pages.header.Header;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.BeforeStep;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.junit.Assert;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.testng.Assert.assertEquals;
 
@@ -93,6 +88,6 @@ public class AccountSteps {
 
     @Then("I validate the following success message is displayed {string}")
     public void iValidateTheFollowingSuccessMessageIsDisplayedAccountWasDeleted(String message) {
-        assertEquals(header.getSuccessMessage(), message);
+        assertEquals(header.getVisualMessageQueue(), message);
     }
 }
