@@ -7,7 +7,6 @@ import com.jalasoft.sdfc.pages.AppLaunchPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class NavBar extends AbstractPage {
     // it should allows to find almost all the tab items and they arrows in the header
