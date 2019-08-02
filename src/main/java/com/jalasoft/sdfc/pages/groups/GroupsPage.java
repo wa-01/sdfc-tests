@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class GroupsPage extends AbstractPage {
+public class GroupsPage extends BasicForm {
 
     // Buttons
     @FindBy(css = "a[title='New']")
@@ -80,7 +80,7 @@ public class GroupsPage extends AbstractPage {
 
     public void fillingForm(Map<String, Map<String, String>> data) {
         Map<String, ISteps> strategyMap = new HashMap<>();
-        System.out.println(Arrdata.keySet());
+        //System.out.println(Arrdata.keySet());
         //strategyMap.put("Name", );
         //strategyMap.put("text", () -> data.get("text").forEach(this::fillTextField));
         //strategyMap.put("text_option", () -> data.get("text_option").forEach(this::selectOptionInTextField));
