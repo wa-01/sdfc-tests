@@ -12,12 +12,12 @@ public class Chrome extends AbstractDriver{
     @Override
     WebDriver initDriver() {
         // The following is to avoid the notification dialog which comes from chrome
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("profile.default_content_setting_values.notifications", 2);
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("prefs", prefs);
+//        Map<String, Object> prefs = new HashMap<>();
+//        prefs.put("profile.default_content_setting_values.notifications", 2);
+//        ChromeOptions options = new ChromeOptions();
+//        options.setExperimentalOption("prefs", prefs);
 
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver(options);
+        return new ChromeDriver();
     }
 }
