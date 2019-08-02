@@ -8,18 +8,16 @@ Feature: Groups
   Scenario Outline: Create new group
     When I click New button
     And I fill the create form
-      | fieldType     | fieldName       | value             |
-      | text   | Name            | <name>            |
-      | text_area     | Description     | <description>     |
-      | text_search   | Owner           | <owner>           |
-      | select_option | Access Type     | <access_type>     |
-      | checkbox      | Allow customers | <allow_customers> |
-#      | checkbox      | Broadcast Only  | <broadcast_only>  |
-
+      | fieldName       | value             |
+      | Name            | <name>            |
+      | Description     | <description>     |
+      | Owner           | <owner>           |
+      | Access Type     | <access_type>     |
+      | Allow customers | <allow_customers> |
     Examples:
-      | name      | owner           | description       | access_type | allow_customers |
-      | Group 1   | Rosario Falconi | Group description | Public      | select        |
-      | Group New | Rosario Falconi | My description    | Public      | select          |
+      | name    | owner           | description       | access_type | allow_customers |
+      | Group 1 | Rosario Falconi | Group description | Public      | select          |
+#      | Group New | Rosario Falconi | My description    | Public      | select          |
 #    And I click "Save & Next" button
 #    And I click the "Next" button
 #    And I click the "Done" button

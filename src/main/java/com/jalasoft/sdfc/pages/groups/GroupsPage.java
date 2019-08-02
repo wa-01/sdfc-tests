@@ -2,17 +2,16 @@ package com.jalasoft.sdfc.pages.groups;
 
 import com.jalasoft.sdfc.core.ui.ISteps;
 import com.jalasoft.sdfc.pages.AbstractPage;
-import com.jalasoft.sdfc.pages.AppLaunchPage;
 import com.jalasoft.sdfc.pages.common.BasicForm;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonProperty;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class GroupsPage extends AbstractPage {
 
@@ -48,49 +47,51 @@ public class GroupsPage extends AbstractPage {
     @FindBy(xpath = "//span[text()='Allow customers']/parent::label[contains(@class,'uiLabel')]/following-sibling::input[@type='checkbox']")
     private WebElement allowCustomersOption;
 
-    @FindBy(xpath = "//span[text()='Allow customers']/parent::label[contains(@class,'uiLabel')]/following-sibling::input[@type='checkbox']")
+    @FindBy(xpath = "//span[text()='Broadcast Only']/parent::label[contains(@class,'uiLabel')]/following-sibling::input[@type='checkbox']")
     private WebElement broadcastOption;
 
     private BasicForm basicForm;
 
-    public void clickNewButtonGroups(){
+    public void clickNewButtonGroups() {
         action.click(newButton);
     }
 
-    public void setGroupName(String name){
+    public void setGroupName(String name) {
         wait.until(ExpectedConditions.elementToBeClickable(nameField));
-        action.setValue(nameField,name);
+        action.setValue(nameField, name);
+
     }
 
-    public void setGroupDescription(String description){
+    public void setGroupDescription(String description) {
         wait.until(ExpectedConditions.elementToBeClickable(descriptionField));
-        action.setValue(descriptionField,description);
+        action.setValue(descriptionField, description);
     }
 
-    public void setGroupInformation(String information){
+    public void setGroupInformation(String information) {
         wait.until(ExpectedConditions.elementToBeClickable(informationField));
-        action.setValue(informationField,information);
+        action.setValue(informationField, information);
     }
 
-    public void filllingForm(List<Map<String, String>> data){
-        basicForm = new BasicForm();
-        Map<String, Map<String, String>> dataFields = new HashMap<>();
-        for (Map<String,String> value: data ) {
-            if (dataFields.containsKey(value.get("fieldType"))) {
-                dataFields.get(value.get("fieldType")).put(value.get("fieldName"), value.get("value"));
-                System.out.println("1. "+value.values());
+    public void setAccessType(String information, String option) {
+        wait.until(ExpectedConditions.elementToBeClickable(accessTypeSelector));
+        action.click(accessTypeSelector);
+        action.setValue(informationField, information);
+    }
 
-            } else {
-                Map<String, String> values = new HashMap<>();
-                values.put(value.get("fieldName"), value.get("value"));
-                dataFields.put(value.get("fieldType"),values);
-                System.out.println("2. " + value.values());
+    public void fillingForm(Map<String, Map<String, String>> data) {
+        Map<String, ISteps> strategyMap = new HashMap<>();
+        System.out.println(Arrdata.keySet());
+        //strategyMap.put("Name", );
+        //strategyMap.put("text", () -> data.get("text").forEach(this::fillTextField));
+        //strategyMap.put("text_option", () -> data.get("text_option").forEach(this::selectOptionInTextField));
+        //strategyMap.put("select_option", () -> data.get("select_option").forEach(this::selectOptionInSelectField));
+        //strategyMap.put("text_area", () -> data.get("text_area").forEach(this::fillTextArea));
+        //strategyMap.put("checkbox", () -> data.get("checkbox").forEach(this::selectCheckBox));
 
-            }
+        Set<String> keys = data.keySet();
+        for (String key : keys) {
+            strategyMap.get(key).execute();
         }
-        basicForm.setFormFields(dataFields);
-        System.out.println("============================================");
-
     }
 
 /*
@@ -100,8 +101,8 @@ public class GroupsPage extends AbstractPage {
         action.click(By.xpath(optionAccountLocator));
     }*/
 
-public void selectType(){
-    System.out.println("Hola");
-}
+    public void selectType() {
+        System.out.println("Hola");
+    }
 
 }

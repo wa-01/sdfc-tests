@@ -48,7 +48,12 @@ public class GroupsSteps {
     }
 
     @And("I fill the create form")
-    public void iFillTheCreateForm(List<Map<String, String>> data) {
-        groupsPage.filllingForm(data);
+    public void iFillTheCreateForm(DataTable dataTable) {
+        List<Map<String, String>> datalist = dataTable.asMaps();
+        Map<String, Map<String, String>> data = new HashMap<>();
+        for (Map<String, String> dataRow: datalist) {
+            data.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
+        }
+        groupsPage.fillingForm(data);
     }
 }
