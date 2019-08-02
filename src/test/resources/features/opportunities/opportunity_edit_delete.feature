@@ -1,7 +1,7 @@
 Feature: Opportunities
 
   Background:
-    Given I sign in as "username" user and "password" as password
+    Given I sign in as "sf_user"
     And I click on the AppLauncher Icon
     And I select the item "Opportunities"
 

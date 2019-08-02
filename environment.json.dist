@@ -1,0 +1,9 @@
+{
+  "credentials" : {
+    "sf_user" : {
+      "username" : "",
+      "password" : ""
+    }
+  },
+  "browser" : "chrome"
+}
