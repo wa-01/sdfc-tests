@@ -5,15 +5,21 @@ Feature: Groups
     And I click on the AppLauncher Icon
     And I select the item "Groups"
 
-  Scenario Outline: Create new public group
+  Scenario Outline: Create new group
     When I click New button
     And I fill the create form
       | fieldType     | fieldName       | value             |
-      | text_option   | Name            | <name>            |
+      | text   | Name            | <name>            |
       | text_area     | Description     | <description>     |
+      | text_search   | Owner           | <owner>           |
       | select_option | Access Type     | <access_type>     |
       | checkbox      | Allow customers | <allow_customers> |
-      | checkbox      | Broadcast Only  | <broadcast>       |
+#      | checkbox      | Broadcast Only  | <broadcast_only>  |
+
+    Examples:
+      | name      | owner           | description       | access_type | allow_customers |
+      | Group 1   | Rosario Falconi | Group description | Public      | select        |
+      | Group New | Rosario Falconi | My description    | Public      | select          |
 #    And I click "Save & Next" button
 #    And I click the "Next" button
 #    And I click the "Done" button
@@ -22,10 +28,6 @@ Feature: Groups
 #    And I see "Public" under page title
 #    And I see "Rosario Falconi"
 #    And I can find it using search box from nav bar
-    Examples:
-      | name    | description       | access_type | allow_customers | broadcast |
-      | Group 1 | Group description | Public      | unselect        | select    |
-#      | Group 2 | A description 02  | Private     |
 
 
     # Verify it is not possible to create a public group with allow customers

@@ -9,6 +9,7 @@ import com.jalasoft.sdfc.pages.header.NavBar;
 import com.jalasoft.sdfc.pages.header.NavBarMenu;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,16 +49,6 @@ public class GroupsSteps {
 
     @And("I fill the create form")
     public void iFillTheCreateForm(List<Map<String, String>> data) {
-        Map<String, Map<String, String>> dataFields = new HashMap<>();
-        for (Map<String, String> dataRow: data) {
-            if (dataFields.containsKey(dataRow.get("fieldType"))) {
-                dataFields.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
-            } else {
-                Map<String, String> values = new HashMap<>();
-                values.put(dataRow.get("fieldName"), dataRow.get("value"));
-                dataFields.put(dataRow.get("fieldType"),values);
-            }
-        }
-        basicForm.setFormFields(dataFields);
+        groupsPage.filllingForm(data);
     }
 }
