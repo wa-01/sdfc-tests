@@ -2,6 +2,7 @@ package com.jalasoft.sdfc.core.ui;
 
 import java.util.concurrent.TimeUnit;
 
+import com.jalasoft.sdfc.core.Environment;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,7 +21,7 @@ public class DriverManager {
 
 	private DriverManager() {
 		// info from config.json
-		String browser = "chrome";
+		String browser = Environment.getInstance().getValue("$['browser']");
 		driver = DriverFactory.getDriver(browser);
 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
