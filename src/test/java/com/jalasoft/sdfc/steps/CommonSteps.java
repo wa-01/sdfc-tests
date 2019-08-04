@@ -87,4 +87,16 @@ public class CommonSteps {
         navBar.clickOnTabNameArrow(Item.valueOfItem(menuName));
         assertFalse(navBarMenu.isMenuItemVisible(name));
     }
+
+    @Then("I validate the create form an error message says {string}")
+    public void iValidateTheCreateFormAnErrorMessageSays(String message) {
+        assertEquals(message, basicForm.getErrorMessageAfterClickSave());
+    }
+
+    @And("I validate these fields are required to complete in the form")
+    public void iValidateTheseFieldsAreRequiredToCompleteInTheForm(List<String> fieldList) {
+        for (String fieldName : fieldList) {
+            assertTrue(basicForm.isMarkedAsRequiredAfterClickSave(fieldName));
+        }
+    }
 }
