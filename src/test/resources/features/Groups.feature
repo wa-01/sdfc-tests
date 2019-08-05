@@ -7,29 +7,25 @@ Feature: Groups
 
   Scenario Outline: Create new group
     When I click New button
-    And I fill the create form and click the "Save & Next" button
+    And I fill the create form
       | fieldType     | fieldName       | value             |
-      | text         | Name            | <name>            |
+      | text          | Name            | <name>            |
       | text_area     | Description     | <description>     |
       | select_option | Access Type     | <access_type>     |
       | checkbox      | Allow customers | <allow_customers> |
+      | checkbox      | Broadcast Only  | <broadcast>       |
+    And I click all footer buttons
+    Then I see '<name>' page title
+    And I see '<access_type>' under page title
+    And I see '<description>' on group details section
+    And I see '<broadcast>' next to access type
+    And I can find '<name>' using search box from nav bar
+    And I can see '<name>' on group list page
+    And I close browser
     Examples:
-      | name    | owner           | description       | access_type | allow_customers |
-      | Group 1 | Rosario Falconi | Group description | Public      | select          |
-#      | Group New | Rosario Falconi | My description    | Public      | select          |
-#    And I click "Save & Next" button on step navigator
-#    And I click the "Next" button
-#    And I click the "Done" button
-#    Then I see dashboard page with group name as title page
-#    And I see page title is "Group 1"
-#    And I see "Public" under page title
-#    And I see "Rosario Falconi"
-#    And I can find it using search box from nav bar
+      | name        | description              | access_type | allow_customers | broadcast |
+      | My first 25 | This is the second group | Private     | select          | select    |
 
-
-    # Verify it is not possible to create a public group with allow customers
-  # New Lead for Group : *Salutation, First Name , *Last Name , Email, *Company, Title > button Save
-  # Leas "first + last name" was created
 
   Scenario: Edit public group
     When I click dropdown button

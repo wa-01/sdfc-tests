@@ -2,6 +2,7 @@ package com.jalasoft.sdfc.pages.groups;
 
 import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GroupDetails extends AbstractPage {
 
@@ -15,16 +16,13 @@ public class GroupDetails extends AbstractPage {
 
     private static String XPATH_GROUP_NAME = "//div[contains(@class,'slds-page-header')]/descendant::div[contains(@class,'nameActionsContainer')]/descendant::b";
 
-    private static String XPATH_TYPE = "//div[contains(@class,'slds-page-header')]/descendant::div[contains(@class,'nameActionsContainer')]/descendant::span[contains(@class,'forceChatterOutputGroupCombinedType')]";
+    private static String XPATH_ACCESS_TYPE = "//div[contains(@class,'slds-page-header')]/descendant::div[contains(@class,'nameActionsContainer')]/descendant::span[contains(@class,'forceChatterOutputGroupCombinedType')]";
 
     private static String XPATH_BROADCAST = "//div[contains(@class,'slds-page-header')]/descendant::div[contains(@class,'nameActionsContainer')]/descendant::span[contains(@class,'forceChatterOutputGroupIsBroadcast')]";
-
-    private static String XPATH_GROUP_MAIL = "";
 
     public String getGroupName(){
         return action.getText(By.xpath(XPATH_GROUP_NAME));
     }
-
     public String getDescription() {
         return action.getText(By.xpath(XPATH_DESCRIPTION));
     }
@@ -37,11 +35,12 @@ public class GroupDetails extends AbstractPage {
         return action.getText(By.xpath(XPATH_OWNER));
     }
 
-    public String getType() {
-        return action.getText(By.xpath(XPATH_TYPE));
+    public String getAccessType() {
+        return action.getText(By.xpath(XPATH_ACCESS_TYPE));
     }
 
-    public String getBroadcast() {
-        return action.getText(By.xpath(XPATH_BROADCAST));
+    public boolean getBroadcast() {
+        return action.isElementVisible(By.xpath(XPATH_BROADCAST));
     }
+
 }
