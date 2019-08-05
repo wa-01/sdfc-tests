@@ -88,12 +88,12 @@ public class CommonSteps {
         assertFalse(navBarMenu.isMenuItemVisible(name));
     }
 
-    @Then("I validate the create form an error message says {string}")
+    @Then("I verify the following error message in the form: {string}")
     public void iValidateTheCreateFormAnErrorMessageSays(String message) {
         assertEquals(message, basicForm.getErrorMessageAfterClickSave());
     }
 
-    @And("I validate these fields are required to complete in the form")
+    @And("I verify that the following fields are required in the form:")
     public void iValidateTheseFieldsAreRequiredToCompleteInTheForm(List<String> fieldList) {
         for (String fieldName : fieldList) {
             assertTrue(basicForm.isMarkedAsRequiredAfterClickSave(fieldName));

@@ -11,8 +11,8 @@ Feature: Opportunities
       | fieldType | fieldName | value  |
       | text      | Amount    | 15.0   |
       | checkbox  | Private   | select |
-    Then I validate the create form an error message says "These required fields must be completed: Close Date, Opportunity Name, Stage"
-    And I validate these fields are required to complete in the form
+    Then I verify the following error message in the form: "These required fields must be completed: Close Date, Opportunity Name, Stage"
+    And I verify that the following fields are required in the form:
       | Opportunity Name |
       | Close Date       |
       | Stage            |

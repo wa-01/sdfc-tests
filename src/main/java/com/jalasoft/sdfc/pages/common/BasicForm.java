@@ -30,7 +30,7 @@ public class BasicForm extends AbstractPage {
     private static final String MARKED_AS_REQUIRED_FIELD = "//div[contains(@class, 'has-error')]/" +
             "descendant::span[starts-with(text(),'%s')]";
 
-    @FindBy(css = ".errorsList > li")
+    @FindBy(xpath = "//ul[@class='errorsList']/child::li[starts-with(text(),'These required fields must be completed:')]")
     private WebElement errorMsgWithRequiredFields;
 
     public String getErrorMessageAfterClickSave() {
