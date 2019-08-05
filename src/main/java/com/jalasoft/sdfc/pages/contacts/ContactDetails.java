@@ -4,6 +4,7 @@ import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ContactDetails extends AbstractPage {
 
@@ -36,6 +37,7 @@ public class ContactDetails extends AbstractPage {
     }
 
     public void clickUpdateDetailsButton(String button){
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".forceFeatureDiscoveryDockedContent")));
         action.click(By.cssSelector(String.format("button[title=\"%s\"]", button)));
 
     }
