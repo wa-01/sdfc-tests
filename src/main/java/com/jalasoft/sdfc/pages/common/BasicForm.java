@@ -3,6 +3,8 @@ package com.jalasoft.sdfc.pages.common;
 import com.jalasoft.sdfc.core.ui.ISteps;
 import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,20 @@ public class BasicForm extends AbstractPage {
             "following-sibling::input[@type='checkbox']";
     private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter']/" +
             "descendant::span[text() = '%s']/parent::button";
+    // It allows to identify if a field in the form is required, use this after trying to save the item
+    private static final String MARKED_AS_REQUIRED_FIELD = "//div[contains(@class, 'has-error')]/" +
+            "descendant::span[starts-with(text(),'%s')]";
+
+    @FindBy(xpath = "//ul[@class='errorsList']/child::li[starts-with(text(),'These required fields must be completed:')]")
+    private WebElement errorMsgWithRequiredFields;
+
+    public String getErrorMessageAfterClickSave() {
+        return action.getText(errorMsgWithRequiredFields);
+    }
+
+    public boolean isMarkedAsRequiredAfterClickSave(String fieldName) {
+        return action.isElementVisible(By.xpath(String.format(MARKED_AS_REQUIRED_FIELD, fieldName)));
+    }
 
     public void fillTextField(String label, String text) {
         String selectorXpath = String.format(TEXT_FIELD, label);
