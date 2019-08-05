@@ -12,7 +12,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gherkin.ast.DataTable;
+import io.cucumber.datatable.DataTable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -113,8 +113,12 @@ public class CommonSteps {
     }
 
     @And("I add {string} text to the following fields in the edit form:")
-    public void iAddTextToTheFollowingFieldsInTheEditForm(String text, Map<String, String> data) {
-        basicForm.addTextToField(text, data);
+    public void iAddTextToTheFollowingFieldsInTheEditForm(String text, DataTable data) {
+        List<Map<String, String>> dataMaps = data.asMaps();
+
+        for (Map<String, String> dataMap: dataMaps) {
+            basicForm.addTextToField(text, dataMap);
+        }
 
         basicForm.clickFooterButton("Save");
     }
