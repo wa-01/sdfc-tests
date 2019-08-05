@@ -1,4 +1,4 @@
-package steps;/*
+package com.jalasoft.sdfc.steps;/*
  * @autor: mauricioramirez
  * Project: sdfc
  * Package: steps
@@ -9,9 +9,13 @@ import com.jalasoft.sdfc.pages.Assets.AssetPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
-public class AssetPageStepdefs {
+public class AssetPageStepDef {
 
-    private AssetPage assetPage = new AssetPage();
+    private AssetPage assetPage;
+
+    public AssetPageStepDef(AssetPage assetPage) {
+        this.assetPage = assetPage;
+    }
 
     @Then("I verify that the title on {string} page is {string}")
     public void iVerifyThatTheTitleOnPageIs(String pageName, String expectedTitle) {

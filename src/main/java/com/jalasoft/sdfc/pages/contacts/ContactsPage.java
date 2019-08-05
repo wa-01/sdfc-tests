@@ -1,13 +1,8 @@
 package com.jalasoft.sdfc.pages.contacts;
 
-import com.jalasoft.sdfc.core.ui.ISteps;
 import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class ContactsPage extends AbstractPage {
 

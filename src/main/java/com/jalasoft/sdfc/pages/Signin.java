@@ -15,14 +15,13 @@ public class Signin extends AbstractPage {
     @FindBy(css = "#Login")
     private WebElement loginButton;
 
-    public Signin() {
-        driver.get("https://login.salesforce.com/");
-    }
-
     public NavBar loginAs(String userName, String password) {
-        action.setValue(userNameTextField, userName);
-        action.setValue(passwordTextField, password);
-        action.click(loginButton);
+        if (driver.getTitle().contains("Login | Salesforce")){
+            //driver.get("https://login.salesforce.com/");
+            action.setValue(userNameTextField, userName);
+            action.setValue(passwordTextField, password);
+            action.click(loginButton);
+        }
         return new NavBar();
     }
 }

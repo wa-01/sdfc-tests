@@ -83,5 +83,9 @@ public class WebDriverAction {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         actionChain.moveToElement(element).click().perform();
     }
+    public void mouseClick(By element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        actionChain.moveToElement(driver.findElement(element)).click().perform();
+    }
 
 }

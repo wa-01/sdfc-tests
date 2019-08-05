@@ -3,6 +3,7 @@ package com.jalasoft.sdfc.pages.common;
 import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.AppLaunchPage;
 import com.jalasoft.sdfc.pages.Assets.AssetsPage;
+import com.jalasoft.sdfc.pages.accounts.AccountsPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ public class BasicPageFactory {
 
     static {
         PAGES.put("assets", AssetsPage::new);
+        PAGES.put("accounts", AccountsPage::new);
         PAGES.put("newItemForm", BasicForm::new);
         PAGES.put("appLauncher", AppLaunchPage::new);
     }

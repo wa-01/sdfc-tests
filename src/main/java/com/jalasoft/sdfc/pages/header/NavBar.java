@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavBar extends AbstractPage {
     // it should allows to find almost all the tab items and they arrows in the header
-    private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[@title='%s']";
+    private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[contains(@title, '%s')]";
     private final static String TAB_NAME_ARROW = "%s/following::a/descendant::span[starts-with(text(),'%s')]/ancestor::a";
 
     @FindBy(css = ".slds-icon-waffle_container")
@@ -27,7 +27,8 @@ public class NavBar extends AbstractPage {
 
     public AbstractPage clickOnTabName(Item tab) {
         // Method used to click a TAB item in the header.
-        action.click(By.xpath(String.format(TAB_NAME, tab.getName())));
+//        action.click(By.xpath(String.format(TAB_NAME, tab.getName())));
+        action.mouseClick(By.xpath(String.format(TAB_NAME, tab.getName())));
 
         return BasicPageFactory.getPage(tab.getName().toLowerCase());
     }

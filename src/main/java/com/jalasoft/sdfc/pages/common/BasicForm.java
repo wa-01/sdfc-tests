@@ -22,7 +22,7 @@ public class BasicForm extends AbstractPage {
             "following-sibling::textarea";
     private static final String CHECK_BOX = "//span[starts-with(text(),'%s')]/parent::label[contains(@class, 'uiLabel')]/" +
             "following-sibling::input[@type='checkbox']";
-    private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter']/" +
+    private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter' or contains(@class, 'modal-footer')]/" +
             "descendant::span[text() = '%s']/parent::button";
 
     public void fillTextField(String label, String text) {
@@ -74,5 +74,9 @@ public class BasicForm extends AbstractPage {
         for (String key : keys) {
             strategyMap.get(key).execute();
         }
+    }
+
+    public void addTextToField(String text, Map<String, String> data) {
+        fillTextField(data.get("fieldName"), text);
     }
 }
