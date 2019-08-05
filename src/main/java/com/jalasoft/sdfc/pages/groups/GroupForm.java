@@ -16,10 +16,7 @@ import java.util.Set;
 
 public class GroupForm extends BasicForm {
 
-
     // Buttons
-    private static final String CSS_NEW_BUTTON = "a[title='New']";
-
     private static final String XPATH_FOOTER_BUTTONS = "//div[@class='wizard-step active']/" +
             "descendant::div[contains(@class,'wizard-step-navigator')]/" +
             "child::button/child::span[starts-with(text(),'%s')]";
@@ -30,11 +27,22 @@ public class GroupForm extends BasicForm {
 
     //@FindBy(xpath = "//span[starts-with(text(),'Information')]/ancestor::div[contains(@class, 'slds-form-element_readonly')]/descendant::div[@class='ql-clipboard']")
 
+    private static final String GROUP_SELECT_FIELD = "//span[contains(@id,'label')][starts-with(text(),'%s')]/" +
+            "ancestor::div[contains(@class, 'uiInput')]/descendant::a[@class='select']";
+    private static final String GROUP_SELECT_FIELD_OPTION = "//div[contains(@class,'select-options') and " +
+            "contains(@class,'uiMenuList') and contains(@class,'visible')]/descendant::a[text()='%s']";
+
     @FindBy(className = ".deleteAction")
     private WebElement cleanOwnerField;
 
     @FindBy(xpath = "//input[@title='Search People']")
     private WebElement ownerField;
+
+    @Override
+    public void selectOptionInSelectField(String label, String option) {
+        action.click(By.xpath(String.format(GROUP_SELECT_FIELD, label)));
+        action.click(By.xpath(String.format(GROUP_SELECT_FIELD_OPTION, option)));
+    }
 
     @Override
     public void setFormFields(Map<String, Map<String, String>> data) {
@@ -70,8 +78,7 @@ public class GroupForm extends BasicForm {
         action.click(By.xpath(done));
     }
 
-    public void clickNewButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CSS_NEW_BUTTON)));
-        action.click(By.cssSelector(CSS_NEW_BUTTON));
+    public String getErrorMessage() {
+        return action.getText(By.xpath("//ul[@class='errorsList']/child::li"));
     }
 }

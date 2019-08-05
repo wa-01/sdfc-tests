@@ -6,13 +6,13 @@ import com.jalasoft.sdfc.pages.header.NavBar;
 import cucumber.api.java.en.And;
 
 public class AppLaunch {
-    private NavBar navBar;
-    private AppLaunchPage appLauncher;
-
-    public AppLaunch(NavBar navBar, AppLaunchPage appLauncher) {
-        this.navBar = navBar;
+    public AppLaunch(AppLaunchPage appLauncher, NavBar navBar) {
         this.appLauncher = appLauncher;
+        this.navBar = navBar;
     }
+
+    private AppLaunchPage appLauncher;
+    private NavBar navBar;
 
     @And("I click on the AppLauncher Icon")
     public void iClickOnTheAppLauncherIcon() {

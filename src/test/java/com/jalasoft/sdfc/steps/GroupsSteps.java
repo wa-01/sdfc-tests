@@ -1,9 +1,10 @@
 package com.jalasoft.sdfc.steps;
 
-import com.jalasoft.sdfc.pages.common.BasicForm;
+import com.jalasoft.sdfc.pages.common.ModalDialog;
 import com.jalasoft.sdfc.pages.groups.GroupDetails;
 import com.jalasoft.sdfc.pages.groups.GroupForm;
 import com.jalasoft.sdfc.pages.groups.GroupsDashboard;
+import com.jalasoft.sdfc.pages.header.Header;
 import com.jalasoft.sdfc.pages.header.NavBar;
 import com.jalasoft.sdfc.pages.header.NavBarMenu;
 import cucumber.api.java.en.And;
@@ -19,34 +20,27 @@ public class GroupsSteps {
     private GroupForm groupForm;
     private GroupDetails groupDetails;
     private GroupsDashboard groupsDashboard;
-    private NavBarMenu navBarMenu;
+    private ModalDialog modalDialog;
     private NavBar navBar;
+    private Header header;
 
-    public GroupsSteps(GroupForm groupForm, GroupDetails groupDetails, NavBarMenu navBarMenu, NavBar navBar, GroupsDashboard groupsDashboard) {
+    public GroupsSteps(GroupForm groupForm, GroupDetails groupDetails,
+                       NavBar navBar, GroupsDashboard groupsDashboard, ModalDialog modalDialog,
+                       Header header) {
         this.groupForm = groupForm;
         this.groupDetails = groupDetails;
-        this.navBarMenu = navBarMenu;
         this.navBar = navBar;
         this.groupsDashboard = groupsDashboard;
-    }
-
-    @And("Dashboard page of new public group is created")
-    public void dashboard_page_of_new_public_group_is_created() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        this.modalDialog = modalDialog;
+        this.header = header;
     }
 
     @When("I click New button")
     public void iClickNewButton() {
-        groupForm.clickNewButton();
+        groupsDashboard.clickNewButton();
     }
 
-    @And("I click {string} button on add group form")
-    public void iClickButtonOnAddGroupForm(String arg0) {
-        groupForm.clickButton(arg0);
-    }
-
-    @And("I fill the create form")
+    @And("I fill form")
     public void iFillTheCreateForm(List<Map<String, String>> data) {
         Map<String, Map<String, String>> dataFields = new HashMap<>();
         for (Map<String, String> dataRow : data) {
@@ -66,10 +60,23 @@ public class GroupsSteps {
         groupForm.clickButtons();
     }
 
+    @And("I click {string} button")
+    public void iClickButton(String arg0) {
+        //groupForm.clickButton(arg0);
+        modalDialog.clickButton(arg0);
+    }
+
+    @And("I click the {string} button")
+    public void iClickTheButton(String arg0) {
+        groupForm.clickButton(arg0);
+        //modalDialog.clickButton(arg0);
+    }
     @Then("I see {string} page title")
     public void iSeeNamePageTitle(String arg0) {
+        System.out.println(groupDetails.getGroupName());
         String nameGroup = groupDetails.getGroupName();
-        Assert.assertTrue(nameGroup.contains(arg0));
+        System.out.println(nameGroup);
+        Assert.assertTrue(groupDetails.getGroupName().contains(arg0));
     }
 
     @And("I see {string} under page title")
@@ -87,20 +94,19 @@ public class GroupsSteps {
     @And("I see {string} next to access type")
     public boolean iSeeBroadcastNextToAccessType(String arg0) {
         boolean broadcastGroup = groupDetails.getBroadcast();
-        if (arg0.equals("unselect") && !broadcastGroup){
+        if (arg0.equals("unselect") && !broadcastGroup) {
             return true;
         }
-        if (arg0.equals("select") && broadcastGroup){
+        if (arg0.equals("select") && broadcastGroup) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     @And("I can find {string} using search box from nav bar")
     public void iCanFindNameUsingSearchBoxFromNavBar(String arg0) {
-        groupsDashboard.searchBox(arg0);
+        Assert.assertTrue(groupsDashboard.searchBox(arg0));
     }
 
     @And("I close browser")
@@ -110,6 +116,49 @@ public class GroupsSteps {
 
     @And("I can see {string} on group list page")
     public void iCanSeeNameOnGroupListPage(String arg0) {
-        groupsDashboard.isInList(arg0);
+        Assert.assertTrue(groupsDashboard.isInList(arg0));
+    }
+
+    @And("I click on tab {string}")
+    public void iClickOnTab(String arg0) {
+        navBar.clickOnTabNameContains(arg0);
+    }
+
+    @And("I select {string} option")
+    public void iSelectOption(String arg0) {
+        groupDetails.clickGroupOption(arg0);
+    }
+
+    @And("I delete {string} group")
+    public void iDeleteGroup(String arg0) {
+        groupDetails.deleteGroup(arg0);
+        System.out.println("On delete group");
+    }
+
+    @And("I see delete message for {string}")
+    public void iSeeDeleteMessageFor(String arg0) {
+        String message = String.format("Group \"%s\" was deleted.", arg0);
+        Assert.assertTrue(message.equals(header.getVisualMessageQueue()));
+    }
+
+    @And("I see edit message for {string}")
+    public void iSeeEditMessageFor(String arg0) {
+        String message = String.format("Group \"%s\" was saved.", arg0);
+        Assert.assertTrue(message.equals(header.getVisualMessageQueue()));
+    }
+
+    @And("I do not see {string} on group list page")
+    public void iDoNotSeeOnGroupListPage(String arg0) {
+        Assert.assertFalse(groupsDashboard.isInList(arg0));
+    }
+
+    @And("I do not find {string} using search box from nav bar")
+    public void iDoNotFindUsingSearchBoxFromNavBar(String arg0) {
+        Assert.assertFalse(groupsDashboard.searchBox(arg0));
+    }
+
+    @Then("I see {string} message")
+    public void iSeeMessage(String arg0) {
+        Assert.assertTrue(arg0.equals(groupForm.getErrorMessage()));
     }
 }
