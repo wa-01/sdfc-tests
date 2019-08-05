@@ -9,10 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 public class NavBar extends AbstractPage {
     // it should allows to find almost all the tab items and they arrows in the header
     private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[contains(@title, '%s')]";
-    private final static String TAB_NAME_ARROW = "%s/following::a/descendant::span[contains(text(),'%s')]/ancestor::a";
+    private final static String TAB_NAME_ARROW = "/following-sibling::one-app-nav-bar-item-dropdown/descendant::a";
 
     @FindBy(css = ".slds-icon-waffle_container")
     private WebElement AppLauncherButton;
@@ -36,9 +38,11 @@ public class NavBar extends AbstractPage {
     public NavBarMenu clickOnTabNameArrow(Item tab) {
         // Method used to click in the arrow of a TAB item if exists in the header.
         String tabNameLocator = String.format(TAB_NAME, tab.getName());
-        String arrowButtonLocator = String.format(TAB_NAME_ARROW, tabNameLocator, tab.getName());
+        String arrowButtonLocator = tabNameLocator + TAB_NAME_ARROW;
 
-        action.click(By.xpath(arrowButtonLocator));
+        driver.manage().timeouts().implicitlyWait((long) 1.0, TimeUnit.SECONDS);
+
+        action.mouseClick(By.xpath(arrowButtonLocator));
         return new NavBarMenu();
     }
 

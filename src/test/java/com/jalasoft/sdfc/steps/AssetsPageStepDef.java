@@ -5,6 +5,7 @@ package com.jalasoft.sdfc.steps;/*
  * Version: 1.0
  */
 
+import com.jalasoft.sdfc.pages.Assets.AssetPage;
 import com.jalasoft.sdfc.pages.Assets.AssetsPage;
 import com.jalasoft.sdfc.pages.common.BasicForm;
 import cucumber.api.java.en.And;
@@ -24,12 +25,7 @@ public class AssetsPageStepDef {
         assetsPage.clickNewItemButton();
     }
 
-    @Then("I should see a new row")
-    public void iShouldSeeANewRow() {
-        System.out.print("pass");
-    }
-
-    @Then("I verify that {string} is on a row in inner Assets table")
+    @And("I verify that {string} is on a row in inner Assets table")
     public void iVerifyThatIsOnARowInInnerAssetsTable(String assetName) {
         String actualAssetName = assetsPage.getInnerTableAssetNameText(assetName);
 
@@ -39,5 +35,10 @@ public class AssetsPageStepDef {
     @And("I click the edit button for {string} Asset")
     public BasicForm iClickTheEditButtonForAsset(String assetName) {
         return assetsPage.clickEditButtonOnAsset(assetName);
+    }
+
+    @And("I click on the {string} asset link")
+    public AssetPage iClickOnTheAssetLink(String assetName) {
+        return assetsPage.clickAssetLink(assetName);
     }
 }

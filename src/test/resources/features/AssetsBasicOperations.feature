@@ -19,10 +19,10 @@ Feature: Create new asset
     And I click on the AppLauncher Icon
     And I select the item "Assets"
     And I verify that "<assetName>" is on a row in inner Assets table
-
     Examples:
       | assetName    |
       | test123      |
+
 
   Scenario Outline: Edit Asset
     And I click on the AppLauncher Icon
@@ -35,7 +35,9 @@ Feature: Create new asset
     When I click the "Save" button on edit item Form Page
 
     Then I verify that "<expectedAssetName>" is on a row in inner Assets table
-
+    And I click on the "<expectedAssetName>" asset link
+    And I verify that the title on "Asset" page is "<expectedAssetName>"
+    And I verify that "Asset Name" inner form text field is "<expectedAssetName>"
     Examples:
       | actualAssetName     | expectedAssetName     |
       | test123             | test123_edited        |

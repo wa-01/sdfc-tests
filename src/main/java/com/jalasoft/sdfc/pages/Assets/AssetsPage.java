@@ -46,4 +46,12 @@ public class AssetsPage extends AbstractPage {
 
         return new BasicForm();
     }
+
+    public AssetPage clickAssetLink(String assetName) {
+        String assetNameTitleLocator = String.format(INNER_TABLE_TITLE, assetName);
+
+        action.mouseClick(By.xpath(assetNameTitleLocator));
+
+        return new AssetPage();
+    }
 }
