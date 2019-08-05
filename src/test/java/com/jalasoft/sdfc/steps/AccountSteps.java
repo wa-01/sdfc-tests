@@ -65,9 +65,9 @@ public class AccountSteps {
 
     }
 
-    @And("I add on the name {string} string.")
-    public void iAddOnTheNameString(String EditedName) {
-        accountDetails.EditAccountName(EditedName);
+    @And("I fill the {string} text field with {string}")
+    public void iAddOnTheNameString(String fieldName, String value) {
+        accountDetails.setTextField(fieldName, value);
 
     }
 

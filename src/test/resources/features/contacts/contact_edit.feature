@@ -18,12 +18,12 @@ Feature: Contacts
       | fieldType | fieldName  | value       |
       | text      | Last Name  | <LastName>  |
       | text      | First Name | <FirstName> |
-    Then I validate the contact name is 'Contactupdate LastNameupdate'
-    And I validate the contact label is 'Contactupdate LastNameupdate'
+    Then I validate the contact name is '<FirstName> <LastName>'
+    And I validate the contact label is '<FirstName> <LastName>'
     And I click on the AppLauncher Icon
     And I select the item "Contacts"
-    And I validate the contact 'Contactupdate LastNameupdate' is visible in the table
+    And I validate the contact '<FirstName> <LastName>' is visible in the table
 
     Examples:
       | LastName | FirstName |
-      | Contactupdate    | LastNameupdate    |
+      | LastNameupdate    |  Contactupdate   |
