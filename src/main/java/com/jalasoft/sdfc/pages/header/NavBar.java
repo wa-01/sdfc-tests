@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 public class NavBar extends AbstractPage {
     // it should allows to find almost all the tab items and they arrows in the header
     private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[contains(@title, '%s')]";
-    private final static String TAB_NAME_ARROW = "%s/following::a/descendant::span[starts-with(text(),'%s')]/ancestor::a";
+    private final static String TAB_NAME_ARROW = "%s/following::a/descendant::span[contains(text(),'%s')]/ancestor::a";
 
     @FindBy(css = ".slds-icon-waffle_container")
     private WebElement AppLauncherButton;
