@@ -7,12 +7,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class AccountDetails extends AbstractPage {
 
+    private static final String TEXT_FIELD = "//span[contains(text(),'%s')]/parent::label/following-sibling::input";
 
     @FindBy(css = "span[class=\"custom-truncate uiOutputText\"]")
     private WebElement contactNameLabel;
-
-    @FindBy(css = "input[class='input uiInput uiInputText uiInput--default uiInput--input']")
-    private WebElement nameField;
 
     @FindBy(css = "a[class='slds-grid slds-grid--vertical-align-center slds-grid--align-center sldsButtonHeightFix']")
     private WebElement headerDropDown;
@@ -44,10 +42,8 @@ public class AccountDetails extends AbstractPage {
         action.click(By.cssSelector(String.format(EDITBUTTON_NAME, editName)));
     }
 
-    public void EditAccountName(String editedName) {
-//        action.setValue(nameField,editedName);
-        action.setValue(nameField,editedName);
-
+    public void setTextField(String fieldName, String value){
+        action.setValue(By.xpath(String.format(TEXT_FIELD, fieldName)), value);
     }
 
     public void ClickButton(String button) {
