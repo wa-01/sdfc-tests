@@ -109,7 +109,7 @@ public class GroupsSteps {
     }
 
     @And("I can see {string} on group list page")
-    public void iCanSeeNameOnGroupListPage() {
-        System.out.println("On groups list page");
+    public void iCanSeeNameOnGroupListPage(String arg0) {
+        groupsDashboard.isInList(arg0);
     }
 }

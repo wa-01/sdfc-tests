@@ -19,12 +19,13 @@ Feature: Groups
     And I see '<access_type>' under page title
     And I see '<description>' on group details section
     And I see '<broadcast>' next to access type
-    And I can find '<name>' using search box from nav bar
+    And I click on the "Groups" tab
     And I can see '<name>' on group list page
+    And I can find '<name>' using search box from nav bar
     And I close browser
     Examples:
       | name        | description              | access_type | allow_customers | broadcast |
-      | My first 25 | This is the second group | Private     | select          | select    |
+      | My first 36 | This is the hhuhu group | Private     | select          | select    |
 
 
   Scenario: Edit public group
