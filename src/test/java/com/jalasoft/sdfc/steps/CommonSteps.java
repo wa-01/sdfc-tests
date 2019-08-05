@@ -122,4 +122,16 @@ public class CommonSteps {
 
         basicForm.clickFooterButton("Save");
     }
+
+    @Then("I verify the following error message in the form: {string}")
+    public void iValidateTheCreateFormAnErrorMessageSays(String message) {
+        assertEquals(message, basicForm.getErrorMessageAfterClickSave());
+    }
+
+    @And("I verify that the following fields are required in the form:")
+    public void iValidateTheseFieldsAreRequiredToCompleteInTheForm(List<String> fieldList) {
+        for (String fieldName : fieldList) {
+            assertTrue(basicForm.isMarkedAsRequiredAfterClickSave(fieldName));
+        }
+    }
 }
