@@ -26,4 +26,4 @@ Feature: Contacts
 
     Examples:
       | LastName | FirstName |
-      | update    | update    |
+      | Contactupdate    | LastNameupdate    |

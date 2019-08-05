@@ -13,7 +13,7 @@ Feature: Accounts
 
     When I click on account "Details" tab
     And I click on "Edit Account Name" option button
-    And I add on the name "edited" string.
+    And I add on the name "AccountTest02203edited" string.
     And I click on "Save" button
     Then I validate the account name is "AccountTest02203edited"
     And I click on the AppLauncher Icon

@@ -14,7 +14,7 @@ public class BasicForm extends AbstractPage {
             "ancestor::div[contains(@class,'uiInput')]/descendant::input";
     private static final String TEXT_FIELD_OPTION = "//label/span[starts-with(text(), '%s')]/" +
             "ancestor::div[contains(@class, 'slds-form-element')]/descendant::div[@title = '%s']";
-    private static final String SELECT_FIELD = "//span[contains(@id,'a-label')][starts-with(text(),'%s')]/" +
+    private static final String SELECT_FIELD = "//span[contains(@id,'label')][starts-with(text(),'%s')]/" +
             "ancestor::div[contains(@class, 'uiInput')]/descendant::a[@class='select']";
     private static final String SELECT_FIELD_OPTION = "//div[contains(@class,'select-options') and " +
             "contains(@class,'uiMenuList') and contains(@class,'visible')]/descendant::a[text()='%s']";
@@ -22,7 +22,7 @@ public class BasicForm extends AbstractPage {
             "following-sibling::textarea";
     private static final String CHECK_BOX = "//span[starts-with(text(),'%s')]/parent::label[contains(@class, 'uiLabel')]/" +
             "following-sibling::input[@type='checkbox']";
-    private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter']/" +
+    private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter' or contains(@class, 'modal-footer')]/" +
             "descendant::span[text() = '%s']/parent::button";
 
     public void fillTextField(String label, String text) {
