@@ -21,7 +21,7 @@ public class NavBar extends AbstractPage {
     private WebElement applicationName;
 
     public AppLaunchPage clickAppLauncherIcon() {
-        action.click(AppLauncherButton);
+        action.mouseClick(AppLauncherButton);
         return new AppLaunchPage();
     }
 
