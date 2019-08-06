@@ -1,4 +1,6 @@
 package com.jalasoft.sdfc.pages.groups;
 
-public class GroupsPage {
+import com.jalasoft.sdfc.pages.AbstractPage;
+
+public class GroupsPage extends AbstractPage {
 }
