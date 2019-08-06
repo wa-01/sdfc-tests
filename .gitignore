@@ -8,6 +8,4 @@
 .DS_Store
 .DS_Store/*
 
-gradle/
-gradlew
-gradlew.bat
+environment.json

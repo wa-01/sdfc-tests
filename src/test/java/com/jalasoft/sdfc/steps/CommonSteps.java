@@ -11,6 +11,8 @@ import com.jalasoft.sdfc.pages.header.NavBarMenu;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,19 +47,24 @@ public class CommonSteps {
         signin.loginAs(userName, password);
     }
 
+    @Given("I fill the create form with")
+    public void iFillTheCreateFormWith(List<Map<String, String>> data) {
+        Map<String, Map<String, String>> dataFields = new HashMap<>();
+
+        for (Map<String, String> dataRow: data) {
+            if (!dataFields.containsKey(dataRow.get("fieldType"))) {
+                dataFields.put(dataRow.get("fieldType"), new HashMap<>());
+            }
+
+            dataFields.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
+        }
+
+        basicForm.setFormFields(dataFields);
+    }
+
     @Given("I fill the create form and click the {string} button")
     public void iSetCreateForm(String buttonName, List<Map<String, String>> data) {
-        Map<String, Map<String, String>> dataFields = new HashMap<>();
-        for (Map<String, String> dataRow: data) {
-            if (dataFields.containsKey(dataRow.get("fieldType"))) {
-                dataFields.get(dataRow.get("fieldType")).put(dataRow.get("fieldName"), dataRow.get("value"));
-            } else {
-                Map<String, String> values = new HashMap<>();
-                values.put(dataRow.get("fieldName"), dataRow.get("value"));
-                dataFields.put(dataRow.get("fieldType"),values);
-            }
-        }
-        basicForm.setFormFields(dataFields);
+        iFillTheCreateFormWith(data);
         basicForm.clickFooterButton(buttonName);
     }
 
@@ -86,5 +93,45 @@ public class CommonSteps {
     public void iValidateTheOpportunityIsNotInTheMenu(String name, String menuName) {
         navBar.clickOnTabNameArrow(Item.valueOfItem(menuName));
         assertFalse(navBarMenu.isMenuItemVisible(name));
+    }
+
+    @When("I click the {string} button on edit item Form Page")
+    public void iClickTheButtonOnEditItemFormPage(String buttonName) {
+        basicForm.clickFooterButton(buttonName);
+    }
+
+    @When("I click the {string} button on new item Form Page")
+    public void iClickTheButtonOnNewItemFormPage(String buttonName) {
+        basicForm.clickFooterButton(buttonName);
+    }
+
+    @Then("I verify that {string} is on dropdown menu of {string} tab")
+    public void iVerifyThatIsOnDropdownMenuOfTab(String expectedValue, String tabName) {
+        navBarMenu = navBar.clickOnTabNameArrow(Item.valueOfItem(tabName));
+
+        assert navBarMenu.isMenuItemVisible(expectedValue);
+    }
+
+    @And("I add {string} text to the following fields in the edit form:")
+    public void iAddTextToTheFollowingFieldsInTheEditForm(String text, DataTable data) {
+        List<Map<String, String>> dataMaps = data.asMaps();
+
+        for (Map<String, String> dataMap: dataMaps) {
+            basicForm.addTextToField(text, dataMap);
+        }
+
+        basicForm.clickFooterButton("Save");
+    }
+
+    @Then("I verify the following error message in the form: {string}")
+    public void iValidateTheCreateFormAnErrorMessageSays(String message) {
+        assertEquals(message, basicForm.getErrorMessageAfterClickSave());
+    }
+
+    @And("I verify that the following fields are required in the form:")
+    public void iValidateTheseFieldsAreRequiredToCompleteInTheForm(List<String> fieldList) {
+        for (String fieldName : fieldList) {
+            assertTrue(basicForm.isMarkedAsRequiredAfterClickSave(fieldName));
+        }
     }
 }

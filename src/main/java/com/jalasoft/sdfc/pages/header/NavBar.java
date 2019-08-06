@@ -4,15 +4,17 @@ import com.jalasoft.sdfc.enums.Item;
 
 import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.AppLaunchPage;
+import com.jalasoft.sdfc.pages.common.BasicPageFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 public class NavBar extends AbstractPage {
     // it should allows to find almost all the tab items and they arrows in the header
-    private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[@title='%s']";
-    private final static String TAB_NAME_ARROW = "%s/following::a/descendant::span[starts-with(text(),'%s')]/ancestor::a";
-    private final static String TAB_NAME_CONTAINS = "//div[@class='bBottom']/descendant::a[contains(@title,'%s')]";
+    private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[contains(@title, '%s')]";
+    private final static String TAB_NAME_ARROW = "/following-sibling::one-app-nav-bar-item-dropdown/descendant::a";
 
     @FindBy(css = ".slds-icon-waffle_container")
     private WebElement AppLauncherButton;
@@ -21,30 +23,31 @@ public class NavBar extends AbstractPage {
     private WebElement applicationName;
 
     public AppLaunchPage clickAppLauncherIcon() {
-        action.click(AppLauncherButton);
+        action.mouseClick(AppLauncherButton);
         return new AppLaunchPage();
     }
 
-    public void clickOnTabName(Item tab) {
+    public AbstractPage clickOnTabName(Item tab) {
         // Method used to click a TAB item in the header.
+//        action.click(By.xpath(String.format(TAB_NAME, tab.getName())));
         action.mouseClick(By.xpath(String.format(TAB_NAME, tab.getName())));
+
+        return BasicPageFactory.getPage(tab.getName().toLowerCase());
     }
 
     public NavBarMenu clickOnTabNameArrow(Item tab) {
         // Method used to click in the arrow of a TAB item if exists in the header.
-        String tabName = String.format(TAB_NAME, tab.getName());
-        action.click(By.xpath(String.format(TAB_NAME_ARROW, tabName, tab.getName())));
+        String tabNameLocator = String.format(TAB_NAME, tab.getName());
+        String arrowButtonLocator = tabNameLocator + TAB_NAME_ARROW;
+
+        driver.manage().timeouts().implicitlyWait((long) 1.0, TimeUnit.SECONDS);
+
+        action.mouseClick(By.xpath(arrowButtonLocator));
         return new NavBarMenu();
     }
 
     public String getApplicationName() {
         // Returns the application name which is next to the AppLauncher button.
         return action.getText(applicationName);
-    }
-
-
-    public void clickOnTabNameContains(String tabName) {
-        // Method used to click a TAB item in the header.
-        action.mouseClick(By.xpath(String.format(TAB_NAME_CONTAINS,tabName)));
     }
 }

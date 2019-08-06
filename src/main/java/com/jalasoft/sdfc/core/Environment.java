@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
  */
 public final class Environment {
 
-    private static final String CONF_FILE = "environment.json.dist";
+    private static final String CONF_FILE = "environment.json";
     private static Environment ourInstance;
     private DocumentContext jsonContext;
 

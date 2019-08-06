@@ -3,6 +3,8 @@ package com.jalasoft.sdfc.pages.common;
 import com.jalasoft.sdfc.core.ui.ISteps;
 import com.jalasoft.sdfc.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +16,7 @@ public class BasicForm extends AbstractPage {
             "ancestor::div[contains(@class,'uiInput')]/descendant::input";
     private static final String TEXT_FIELD_OPTION = "//label/span[starts-with(text(), '%s')]/" +
             "ancestor::div[contains(@class, 'slds-form-element')]/descendant::div[@title = '%s']";
-    private static final String SELECT_FIELD = "//span[contains(@id,'a-label')][starts-with(text(),'%s')]/" +
+    private static final String SELECT_FIELD = "//span[contains(@id,'label')][starts-with(text(),'%s')]/" +
             "ancestor::div[contains(@class, 'uiInput')]/descendant::a[@class='select']";
     private static final String SELECT_FIELD_OPTION = "//div[contains(@class,'select-options') and " +
             "contains(@class,'uiMenuList') and contains(@class,'visible')]/descendant::a[text()='%s']";
@@ -22,8 +24,22 @@ public class BasicForm extends AbstractPage {
             "following-sibling::textarea";
     private static final String CHECK_BOX = "//span[starts-with(text(),'%s')]/parent::label[contains(@class, 'uiLabel')]/" +
             "following-sibling::input[@type='checkbox']";
-    private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter']/" +
+    private static final String FOOTER_BUTTON = "//div[@class = 'inlineFooter' or contains(@class, 'modal-footer')]/" +
             "descendant::span[text() = '%s']/parent::button";
+    // It allows to identify if a field in the form is required, use this after trying to save the item
+    private static final String MARKED_AS_REQUIRED_FIELD = "//div[contains(@class, 'has-error')]/" +
+            "descendant::span[starts-with(text(),'%s')]";
+
+    @FindBy(xpath = "//ul[@class='errorsList']/child::li[starts-with(text(),'These required fields must be completed:')]")
+    private WebElement errorMsgWithRequiredFields;
+
+    public String getErrorMessageAfterClickSave() {
+        return action.getText(errorMsgWithRequiredFields);
+    }
+
+    public boolean isMarkedAsRequiredAfterClickSave(String fieldName) {
+        return action.isElementVisible(By.xpath(String.format(MARKED_AS_REQUIRED_FIELD, fieldName)));
+    }
 
     public void fillTextField(String label, String text) {
         String selectorXpath = String.format(TEXT_FIELD, label);
@@ -74,5 +90,9 @@ public class BasicForm extends AbstractPage {
         for (String key : keys) {
             strategyMap.get(key).execute();
         }
+    }
+
+    public void addTextToField(String text, Map<String, String> data) {
+        fillTextField(data.get("fieldName"), text);
     }
 }

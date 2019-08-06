@@ -5,6 +5,15 @@ Feature: Contacts
     And I click on the AppLauncher Icon
     And I select the item "Contacts"
 
+  Scenario: Verify that Contact is not created when required fields are not filled
+    When I click on the Add New Contact button
+    And I fill the create form and click the "Save" button
+      | fieldType | fieldName  | value     |
+      | text      | First Name | FirstName |
+    Then I verify the following error message in the form: "These required fields must be completed: Last Name"
+    And I verify that the following fields are required in the form:
+      | Last Name |
+
   Scenario Outline: Create a basic Contact
     When I click on the Add New Contact button
     And I fill the create form and click the "Save" button
@@ -20,4 +29,4 @@ Feature: Contacts
     And I validate the contact "<FirstName> <LastName>" is visible in the table
     Examples:
       | LastName | FirstName |
-      | LastName    | Contact    |
+      | LastName | Contact   |

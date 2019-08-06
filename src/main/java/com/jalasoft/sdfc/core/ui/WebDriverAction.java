@@ -32,8 +32,9 @@ public class WebDriverAction {
 
     public void setValue(By selector, String value) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
-        driver.findElement(selector).clear();
-        driver.findElement(selector).sendKeys(value);
+        WebElement element = driver.findElement(selector);
+        element.clear();
+        element.sendKeys(value);
     }
 
     public void setValue(WebElement webElement, String value) {
