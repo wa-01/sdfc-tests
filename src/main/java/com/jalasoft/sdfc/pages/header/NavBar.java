@@ -52,9 +52,10 @@ public class NavBar extends AbstractPage {
         return action.getText(applicationName);
     }
 
-    public void clickOnTabNameContains(String tabName) {
+    public AbstractPage clickOnTabNameContains(String tabName) {
         // Method used to click a TAB item in the header.
-        action.mouseClick(By.xpath(String.format(TAB_NAME_CONTAINS,tabName)));
+        action.mouseClick(By.xpath(String.format(TAB_NAME_CONTAINS, tabName)));
+        return BasicPageFactory.getPage(tabName.toLowerCase());
     }
 
 }

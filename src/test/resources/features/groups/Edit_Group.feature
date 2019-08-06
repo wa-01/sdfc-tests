@@ -26,10 +26,9 @@ Feature: Edit Group
       | checkbox      | Broadcast Only  | unselect             |
     And I click "Save" button
     Then I see edit message for "Edited group"
-    And I see 'Edited group' page title
-    And I see 'Private' under page title
-    And I see 'A description plus++' on group details section
+    And I see "Edited group" page title
+    And I see "Private" under page title
+    And I see "A description plus++" on group details section
     And I click on tab "Groups"
-    And I can see 'Edited group' on group list page
-    And I can find 'Edited group' using search box from nav bar
-    And I delete "Edited group" group
+    And I can see "Edited group" on group list page
+    And I can find "Edited group" using search box from nav bar
