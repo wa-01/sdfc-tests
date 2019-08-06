@@ -15,6 +15,7 @@ public class NavBar extends AbstractPage {
     // it should allows to find almost all the tab items and they arrows in the header
     private final static String TAB_NAME = "//div[@class='bBottom']/descendant::a[contains(@title, '%s')]";
     private final static String TAB_NAME_ARROW = "/following-sibling::one-app-nav-bar-item-dropdown/descendant::a";
+    private final static String TAB_NAME_CONTAINS = "//div[@class='bBottom']/descendant::a[contains(@title,'%s')]";
 
     @FindBy(css = ".slds-icon-waffle_container")
     private WebElement AppLauncherButton;
@@ -50,4 +51,11 @@ public class NavBar extends AbstractPage {
         // Returns the application name which is next to the AppLauncher button.
         return action.getText(applicationName);
     }
+
+    public AbstractPage clickOnTabNameContains(String tabName) {
+        // Method used to click a TAB item in the header.
+        action.mouseClick(By.xpath(String.format(TAB_NAME_CONTAINS, tabName)));
+        return BasicPageFactory.getPage(tabName.toLowerCase());
+    }
+
 }
