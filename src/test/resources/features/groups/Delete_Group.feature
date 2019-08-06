@@ -6,12 +6,12 @@ Feature: Delete Group
     And I select the item "Groups"
     And I click New button
     And I fill form
-      | fieldType     | fieldName       | value              |
+      | fieldType     | fieldName       | value           |
       | text          | Name            | Group testing 3 |
-      | text_area     | Description     | A description      |
-      | select_option | Access Type     | Public             |
-      | checkbox      | Allow customers | unselect           |
-      | checkbox      | Broadcast Only  | unselect           |
+      | text_area     | Description     | A description   |
+      | select_option | Access Type     | Public          |
+      | checkbox      | Allow customers | unselect        |
+      | checkbox      | Broadcast Only  | unselect        |
     And I click all footer buttons
     And I see 'Group testing 3' page title
 

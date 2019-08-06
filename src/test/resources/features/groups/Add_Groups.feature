@@ -24,8 +24,8 @@ Feature: Add Group
     And I can find '<name>' using search box from nav bar
     Examples:
       | name              | description             | access_type | allow_customers | broadcast |
-      | New public group  | This is the hhuhu group | Public     | unselect          | unselect    |
-      | New private group | This is the hhuhu group | Private      | select        | select  |
+      | New public group  | This is the hhuhu group | Public      | unselect        | unselect  |
+      | New private group | This is the hhuhu group | Private     | select          | select    |
 
 
   Scenario: It is not possible to create public group allowing customers

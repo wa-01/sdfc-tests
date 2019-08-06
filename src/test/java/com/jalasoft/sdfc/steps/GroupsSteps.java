@@ -62,20 +62,17 @@ public class GroupsSteps {
 
     @And("I click {string} button")
     public void iClickButton(String arg0) {
-        //groupForm.clickButton(arg0);
         modalDialog.clickButton(arg0);
     }
 
     @And("I click the {string} button")
     public void iClickTheButton(String arg0) {
         groupForm.clickButton(arg0);
-        //modalDialog.clickButton(arg0);
     }
     @Then("I see {string} page title")
     public void iSeeNamePageTitle(String arg0) {
         System.out.println(groupDetails.getGroupName());
         String nameGroup = groupDetails.getGroupName();
-        System.out.println(nameGroup);
         Assert.assertTrue(groupDetails.getGroupName().contains(arg0));
     }
 
@@ -132,7 +129,6 @@ public class GroupsSteps {
     @And("I delete {string} group")
     public void iDeleteGroup(String arg0) {
         groupDetails.deleteGroup(arg0);
-        System.out.println("On delete group");
     }
 
     @And("I see delete message for {string}")
