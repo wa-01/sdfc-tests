@@ -4,6 +4,7 @@ import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.AppLaunchPage;
 import com.jalasoft.sdfc.pages.Assets.AssetsPage;
 import com.jalasoft.sdfc.pages.accounts.AccountsPage;
+import com.jalasoft.sdfc.pages.groups.GroupsDashboard;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class BasicPageFactory {
         PAGES.put("accounts", AccountsPage::new);
         PAGES.put("newItemForm", BasicForm::new);
         PAGES.put("appLauncher", AppLaunchPage::new);
+        PAGES.put("groups", GroupsDashboard::new);
     }
 
     public static AbstractPage getPage(String pageName) {
