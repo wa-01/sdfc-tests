@@ -4,6 +4,8 @@ import com.jalasoft.sdfc.pages.AbstractPage;
 import com.jalasoft.sdfc.pages.AppLaunchPage;
 import com.jalasoft.sdfc.pages.Assets.AssetsPage;
 import com.jalasoft.sdfc.pages.accounts.AccountsPage;
+import com.jalasoft.sdfc.pages.contacts.ContactsPage;
+import com.jalasoft.sdfc.pages.opportunities.OpportunityPage;
 import com.jalasoft.sdfc.pages.groups.GroupsDashboard;
 
 import java.util.HashMap;
@@ -19,6 +21,8 @@ public class BasicPageFactory {
         PAGES.put("accounts", AccountsPage::new);
         PAGES.put("newItemForm", BasicForm::new);
         PAGES.put("appLauncher", AppLaunchPage::new);
+        PAGES.put("opportunities", OpportunityPage::new);
+        PAGES.put("contacts", ContactsPage::new);
         PAGES.put("groups", GroupsDashboard::new);
     }
 

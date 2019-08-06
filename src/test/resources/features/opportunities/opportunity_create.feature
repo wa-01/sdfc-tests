@@ -76,9 +76,7 @@ Feature: Opportunities
       | Type                         | <type>              |
       | Description                  | <description>       |
       | Next Step                    | <next_step>         |
-      | Account Name                 | <account_name>      |
       | Lead Source                  | <lead_source>       |
-      | Primary Campaign Source      | <primary_campaign>  |
       | Order Number                 | <order_number>      |
       | Main Competitor              | <main_competitor>   |
       | Current Generator            | <current_generator> |
@@ -94,4 +92,4 @@ Feature: Opportunities
       | name                | close_date | stage               | private  | amount | description      | type                          | next_step    | account_name | lead_source    | primary_campaign | order_number | main_competitor | current_generator | delivery_status | tracking_number |
       | auto-opportunity-01 | 7/12/2019  | Prospecting         | select   | 15.00  | A description 01 | Existing Customer - Downgrade | Next step 01 | account01    | Web            | campaign01       | ORD001       | Competitor 01   | Generator 01      | In progress     | TRACK001        |
       | auto-opportunity-02 | 8/11/2019  | Needs Analysis      | unselect | 17.00  | A description 02 | Existing Customer - Upgrade   | Next step 02 | account01    | Purchased List | campaign01       | ORD002       | Competitor 02   | Generator 02      | Yet to begin    | TRACK002        |
-      | auto-opportunity-03 | 15/10/2019 | Perception Analysis | select   | 25.5   | A description 03 | New Customer                  | Next step 03 | account01    | Phone Inquiry  | campaign01       | ORD003       | Competitor 03   | Generator 03      | Completed       | TRACK003        |
+      | auto-opportunity-03 | 10/15/2019 | Perception Analysis | select   | 25.50  | A description 03 | New Customer                  | Next step 03 | account01    | Phone Inquiry  | campaign01       | ORD003       | Competitor 03   | Generator 03      | Completed       | TRACK003        |

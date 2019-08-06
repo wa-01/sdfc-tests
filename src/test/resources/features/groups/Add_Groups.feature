@@ -23,18 +23,19 @@ Feature: Add Group
     And I can see '<name>' on group list page
     And I can find '<name>' using search box from nav bar
     Examples:
-      | name            | description             | access_type | allow_customers | broadcast |
-      | New group three | This is the hhuhu group | Private     | select          | select    |
+      | name              | description             | access_type | allow_customers | broadcast |
+      | New public group  | This is the hhuhu group | Public     | unselect          | unselect    |
+      | New private group | This is the hhuhu group | Private      | select        | select  |
 
 
   Scenario: It is not possible to create public group allowing customers
     When I click New button
     And I fill form
-      | fieldType     | fieldName       | value             |
+      | fieldType     | fieldName       | value                   |
       | text          | Name            | Public group            |
-      | text_area     | Description     | This is the hhuhu group     |
-      | select_option | Access Type     | Public     |
-      | checkbox      | Allow customers | select |
-      | checkbox      | Broadcast Only  | unselect       |
+      | text_area     | Description     | This is the hhuhu group |
+      | select_option | Access Type     | Public                  |
+      | checkbox      | Allow customers | select                  |
+      | checkbox      | Broadcast Only  | unselect                |
     And I click the "Save & Next" button
     Then I see "Allow customers: Public groups can’t have customers." message
