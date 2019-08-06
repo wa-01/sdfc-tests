@@ -25,8 +25,6 @@ public class GroupForm extends BasicForm {
             "/ancestor::div[contains(@class, 'slds-form-element_readonly')]" +
             "/descendant::div[@class='ql-clipboard']";
 
-    //@FindBy(xpath = "//span[starts-with(text(),'Information')]/ancestor::div[contains(@class, 'slds-form-element_readonly')]/descendant::div[@class='ql-clipboard']")
-
     private static final String GROUP_SELECT_FIELD = "//span[contains(@id,'label')][starts-with(text(),'%s')]/" +
             "ancestor::div[contains(@class, 'uiInput')]/descendant::a[@class='select']";
     private static final String GROUP_SELECT_FIELD_OPTION = "//div[contains(@class,'select-options') and " +

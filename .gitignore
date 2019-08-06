@@ -4,8 +4,12 @@
 /out/
 *.iml
 /java/
+gradlew
+gradlew.bat
 
 .DS_Store
 .DS_Store/*
 
 environment.json
+environment.json.dist
+README.md
