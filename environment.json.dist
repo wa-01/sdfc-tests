@@ -1,8 +1,8 @@
 {
   "credentials" : {
     "sf_user" : {
-      "username" : "rpfh1@mailinator.com",
-      "password" : "654321*Aa"
+      "username" : "",
+      "password" : ""
     }
   },
   "browser" : "chrome"
